@@ -4,8 +4,8 @@
 apply plugin: "java"
 
 sourceSets {
-    main.java.srcDirs = ["src/main"]
-    test.java.srcDirs = ["src/test"]
+    main.java.srcDirs = ["java/src/main"]
+    test.java.srcDirs = ["java/src/test"]
 }
 
 repositories { jcenter() }
