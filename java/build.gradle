@@ -1,0 +1,21 @@
+// The following video is what introduced me to gradle:
+// https://www.youtube.com/watch?v=vxKN2VSqTMg
+
+apply plugin: "java"
+
+sourceSets {
+    main.java.srcDirs = ["src/main"]
+    test.java.srcDirs = ["src/test"]
+}
+
+repositories { jcenter() }
+
+dependencies {
+    testCompile "junit:junit:4.12"
+    compile "junit:junit:4.12"
+}
+
+jar {
+    manifest.attributes "Main-Class" : "register.Register"
+}
+

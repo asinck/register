@@ -1,0 +1,5 @@
+#compiled files
+*.class
+
+#emacs backup files
+*~
