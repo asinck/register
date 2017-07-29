@@ -6,3 +6,6 @@
 
 #gradle build directory
 build/
+
+#gradle hidden directory
+.gradle/
