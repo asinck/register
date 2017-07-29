@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="register.FooterTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-07-29T01:34:24" hostname="prism" time="0.003">
+<testsuite name="register.FooterTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-07-29T04:35:30" hostname="prism" time="0.003">
   <properties/>
   <testcase name="testFooter" classname="register.FooterTest" time="0.003"/>
   <system-out><![CDATA[All tests passed.

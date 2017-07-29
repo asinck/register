@@ -1,7 +1,10 @@
 // The following video is what introduced me to gradle:
 // https://www.youtube.com/watch?v=vxKN2VSqTMg
+// The documentation was helpful too.
 
 apply plugin: "java"
+
+def generatedResources = "$buildDir/generated-resources/main"
 
 sourceSets {
     main.java.srcDirs = ["java/src/main"]
