@@ -1,3 +1,5 @@
 language: java
 notifications:
     email: false
+    webhooks:
+      - http://helit.tech:8093/+the-map/showSuccessfulBuildMessages=always
