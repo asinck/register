@@ -2,7 +2,19 @@
 
 [![Build Status](https://travis-ci.org/asinck/register.svg?branch=master)](https://travis-ci.org/asinck/register)
 
-This program is a demonstration of an end-user software system I designed and programmed. This system provides a cash register interface for the cashier. It provides (will provide) capabilities for:
+This program is a demonstration of an end-user software system I designed and programmed. This system provides a cash register interface for the cashier. 
+
+
+
+### Running the Program
+
+To compile this program, run `gradle build` from the root of this project. To run, `java -jar build/libs/register.jar` from the root of this project. 
+
+This project has been documented in javadoc style; run `gradle javadoc` to generate the HTML.
+
+
+
+### Features
 
 - Inputting items manually (hardware isn't an option).
   -   An interface may be provided for your own hardware input, but you have to write your own code to run your hardware.
@@ -22,7 +34,9 @@ Some other possibilities:
 - Manager overrides.
 
 
-Notable aspects of the code:
+
+
+### Notable code aspects:
 
 - Low coupling:
 
@@ -54,3 +68,15 @@ The Travis CI service is in use on this repository, running gradle and the unit 
 
 This project utilizes the MVC architecture as much as it can. The main class (RegisterGUI) assembles the classes into the whole View, and provides the action listener, and thus is also the Controller. The Model class handles all major data manipulation as well as database interaction. 
 
+-   Full Javadoc documentation
+
+
+
+### What I Learned
+
+-   Gradle (new)
+-   Java GUI (mostly new)
+-   Travis CI (new)
+-   JUnit testing (mostly new)
+-   Emacs registers (mostly new) (super awesome)
+-   Which way those lines go in a UML diagram (I've learned this a thousand times, but still don't remember)
