@@ -415,10 +415,10 @@ class Receipt implements ListSelectionListener {
         receipt.setVisibleRowCount(5);
         JScrollPane listScrollPane = new JScrollPane(receipt);
 
-        //This is an example item. This should be removed once any
-        //implementation is in place. Also, this should use this
-        //class's function for adding the item. 
-        receiptList.addElement(new ReceiptItem("Carrots", 2, 1.50));
+        // //This is an example item. This should be removed once any
+        // //implementation is in place. Also, this should use this
+        // //class's function for adding the item. 
+        // receiptList.addElement(new ReceiptItem("Carrots", 2, 1.50));
         /*
           This is in a 3x4 grid; the receipt display is 3x2 units.
         +----------------------+
@@ -491,30 +491,34 @@ class Receipt implements ListSelectionListener {
         return container;
     }
 
-    
-    /**
-     * Clear the entire receipt list.
-     */
-    public void clear() {
-        DefaultListModel items = (DefaultListModel) receipt.getModel();
-        items.removeAllElements();
-        // System.out.println(items.getSize());
-        // for(int i = 0; i < items.getSize(); i++){
-        //     System.out.println(items.getSize());
-        //     receipt.remove(0);
-        //     System.out.println(items.getSize());
-        //     System.out.println();
-        // }
-    }
 
     /**
      * Adds an item to the list.
+     *
+     * @param item      The item to be added to the list
      */
-    public void addItem() {
-        // Object o = items.getElementAt(i);
-        //update total
+    public void addItem(ReceiptItem item) {
+        receipt.clearSelection();
+        DefaultListModel<ReceiptItem> items = (DefaultListModel<ReceiptItem>) receipt.getModel();
+        items.addElement(item);
+        total += item.getTotal();
     }
 
+    /**
+     * Updates an item in the list.
+     * 
+     * @param item      The item to update the current selection to
+     */
+    public void updateItem(ReceiptItem newItem) {
+        DefaultListModel<ReceiptItem> items = (DefaultListModel<ReceiptItem>) receipt.getModel();
+        int index = receipt.getSelectedIndex();
+        if (index != -1) {
+            ReceiptItem item = (ReceiptItem) items.getElementAt(index);
+            total -= item.getTotal();
+            total += newItem.getTotal();
+            items.set(index, newItem);
+        }
+    }    
     
     /**
      * Removes an item from the list. 
@@ -522,14 +526,72 @@ class Receipt implements ListSelectionListener {
      * No parameters; this checks what item is selected. 
      */
     public void removeItem() {
-        //A much better implementation might be to strikethrough the item
+        //A better implementation might be to strikethrough the item
         DefaultListModel items = (DefaultListModel) receipt.getModel();
         int index = receipt.getSelectedIndex();
         if (index != -1) {
+            ReceiptItem item = (ReceiptItem) items.getElementAt(index);
+            total -= item.getTotal();
             items.remove(index);
         }
     }
 
+    /**
+     * Clear the entire receipt list.
+     */
+    public void clear() {
+        DefaultListModel items = (DefaultListModel) receipt.getModel();
+        items.removeAllElements();
+        total = 0.0;
+    }
+            
+    /**
+     * Sets the selection in the receipt display.
+     * 
+     * @param index     the index to set the selection to
+     */
+    public void setSelection(int index) {
+        receipt.setSelectedIndex(index);
+    }
+    
+    /**
+     * Gets the index of the currently selected item in the receipt
+     * list. 
+     * 
+     * @return the index of the currently selected item in the receipt
+     * list 
+     */
+    public int getSelection() {
+        return receipt.getSelectedIndex();
+    }
+
+    /**
+     * The getter function for the subtotal
+     * 
+     * Tax? Never heard of it.
+     * 
+     * @return The subtotal
+     */
+    public double getTotal() {
+        return total;
+    }
+
+
+    /**
+     * The getter function for the currently selected item.
+     * 
+     * @return The currently selected item, or null if no item is
+     *         selected. 
+     */
+    public ReceiptItem getItem() {
+        DefaultListModel items = (DefaultListModel) receipt.getModel();
+        int index = receipt.getSelectedIndex();
+        if (index != -1) {
+            return (ReceiptItem) items.get(index);
+        }
+        return null;
+    }
+    
     /**
      * The getter function for the print button. Useful for
      * identifying what button was pressed.
@@ -836,6 +898,16 @@ class ReceiptItem {
     public void setPrice(float newPrice) {
         price = newPrice;
         priceOverride = true;
+    }
+
+
+    /**
+     * Returns the total cost for this item (price * count)
+     *
+     * @return the total cost for this item (price * count)
+     */
+    public double getTotal() {
+        return price * count;
     }
 
     /**
