@@ -8,12 +8,7 @@ import static org.junit.Assert.assertEquals;
 public class FooterTest {
 	
     String name = "Fred";	
-    // MessageUtil messageUtil = new MessageUtil(message);
     Footer footer = new Footer(null);
-    
-    // public static void main(String[] args) {
-    //     testFooter();
-    // }
     
     @Test
     public void testFooter() {
