@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="register.HeaderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-07-29T04:35:30" hostname="prism" time="0.001">
-  <properties/>
-  <testcase name="testHeader" classname="register.HeaderTest" time="0.001"/>
-  <system-out><![CDATA[All tests passed.
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
