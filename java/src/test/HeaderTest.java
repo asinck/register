@@ -8,12 +8,7 @@ import static org.junit.Assert.assertEquals;
 public class HeaderTest {
 	
     String name = "Fred";	
-    // MessageUtil messageUtil = new MessageUtil(message);
     Header header = new Header(null);
-    
-    // public static void main(String[] args) {
-    //     testHeader();
-    // }
     
     @Test
     public void testHeader() {
