@@ -895,7 +895,7 @@ class ReceiptItem {
      * 
      * @param newPrice   The new price per item.
      */
-    public void setPrice(float newPrice) {
+    public void setPrice(double newPrice) {
         price = newPrice;
         priceOverride = true;
     }
