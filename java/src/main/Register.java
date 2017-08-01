@@ -26,8 +26,8 @@ import javax.swing.border.*;
 public class Register {
    // /**
    //  * Class constructor.
-   //  * 
-   //  */ 
+   //  *
+   //  */
    //  public Register() {
    //      RegisterGUI display = new RegisterGUI();
    //  }
@@ -35,9 +35,9 @@ public class Register {
 
    /**
     * Main method. This is your typical public static void main.
-    * 
+    *
     * @param args  Any input arguments.
-    */     
+    */
     public static void main(String[] args) {
         RegisterGUI display = new RegisterGUI();
         // Register register = new Register();
@@ -53,8 +53,8 @@ public class Register {
 /**
  * The Graphical interface for the program. This class defines the
  * view and contains the controller, making it both the View and
- * Controller of the MVC architecture. 
- * 
+ * Controller of the MVC architecture.
+ *
  * @author Adam Sinck
  * @version 0.0
  */
@@ -69,8 +69,8 @@ class RegisterGUI extends JFrame implements ActionListener {
 
     /**
      * The class constructor.
-     * 
-     * This arranges all the components of the GUI inside it. 
+     *
+     * This arranges all the components of the GUI inside it.
      */
     public RegisterGUI() {
         //This is the top level window.
@@ -131,7 +131,7 @@ class RegisterGUI extends JFrame implements ActionListener {
 
 
         //This is for the top of the GUI - the application menus and
-        //the headers. 
+        //the headers.
         // topBar = new JPanel(new GridLayout());
         // myWindow.add(topBar);
 
@@ -142,13 +142,13 @@ class RegisterGUI extends JFrame implements ActionListener {
         myWindow.setVisible(true);
     }
 
-    
+
 
     /**
      * The action listener. This is the Controller of the MVC
-     * architecture. 
-     * 
-     * @param event   The event that was performed. 
+     * architecture.
+     *
+     * @param event   The event that was performed.
      */
     @Override
     public void actionPerformed(ActionEvent event) {
@@ -174,32 +174,32 @@ class RegisterGUI extends JFrame implements ActionListener {
         else {
             footer.setStatus("Received command: " + command);
         }
-        
+
     }
 }
 
 /**
  * The Application Menu class. This class provides the basic
  * application menu functionality that a user would expect from a
- * program, as applicable and able. 
- * 
+ * program, as applicable and able.
+ *
  * @author Adam Sinck
  * @version 0.0
  */
 
 class ApplicationMenu {
-    
+
     /**
-     * The main menu bar. This contains the entire menu. 
+     * The main menu bar. This contains the entire menu.
      */
     private JMenuBar menuBar;
-    
+
     /**
      * The root of the file menu
      */
     private JMenu file;
     private JMenuItem file_quit;
-    
+
     /**
      * The root of the edit menu
      */
@@ -215,11 +215,11 @@ class ApplicationMenu {
     private JMenu preferences_colorTheme;
     private JMenuItem preferences_colorTheme_light,
         preferences_colorTheme_dark;
-    
-        
+
+
     /**
      * Class constructor.
-     * 
+     *
      * @param listener   The action listener.
      */
     public ApplicationMenu(ActionListener listener) {
@@ -237,11 +237,11 @@ class ApplicationMenu {
                 \- Dark
              \- Options
          */
-        
+
         menuBar = new JMenuBar();
 
         /* Indentation is a little odd on purpose. It mirrors the
-         * structure of the comment above. 
+         * structure of the comment above.
          */
         file = new JMenu("File");
           file_quit = new JMenuItem("Quit");
@@ -253,7 +253,7 @@ class ApplicationMenu {
           edit.add(edit_undo);
           edit_redo = new JMenuItem("Redo");
           edit.add(edit_redo);
-          
+
         preferences = new JMenu("Preferences");
           preferences_colorTheme = new JMenu("Color Theme");
           preferences_colorTheme_light = new JMenuItem("Light");
@@ -270,59 +270,59 @@ class ApplicationMenu {
         menuBar.add(preferences);
     }
 
-        
+
     /**
      * The getter function for the containing GUI of this class.
-     * 
+     *
      * @return The menu bar containing the entire GUI of this class.
      */
     public JMenuBar getMenuBar() {
         return menuBar;
     }
-    
+
 }
 
 
 /**
- * The header class for the GUI. 
- * 
+ * The header class for the GUI.
+ *
  * Provides a basic header for the user interface, allowing a greeting
  * message. Future versions may provide more useful functionality, but
  * for now this may serve as an indicator of who's logged in to the
  * program (standard user, manager, etc).
- * 
+ *
  * @author Adam Sinck
  * @version 0.0
  */
 class Header {
-    
+
     /**
      * The container for the entire GUI representation of the
-     * header. 
+     * header.
      */
     private JPanel container;
     private JLabel greeting;
-        
+
     /**
      * Class constructor.
-     * 
+     *
      * Calls the other constructor, providing no name to put in the
-     * header. 
-     * 
+     * header.
+     *
      * @param listener   The action listener.
      */
     public Header(ActionListener listener) {
         this(listener, "");
     }
-            
+
     /**
      * Class constructor.
-     * 
-     * Initializes the header with a greeting, possibly with a name. 
-     * 
+     *
+     * Initializes the header with a greeting, possibly with a name.
+     *
      * @param listener   The action listener.
      * @param name       The name to be displayed. If it is empty, it
-     *                   will omit it.  
+     *                   will omit it.
      */
     public Header(ActionListener listener, String name) {
         container = new JPanel();
@@ -335,10 +335,10 @@ class Header {
         }
         container.add(greeting);
     }
-            
+
     /**
      * The getter function for the containing GUI of this class.
-     * 
+     *
      * @return The container with the entire GUI of this class.
      */
     public JPanel getHeader() {
@@ -348,7 +348,7 @@ class Header {
 
     /**
      * The getter function for the header text.
-     * 
+     *
      * @return The header text.
      */
     public String getHeaderText() {
@@ -356,9 +356,9 @@ class Header {
     }
     /**
      * Sets a new string in the header.
-     * 
+     *
      * @param newContents   The new message to be displayed in the
-     *                      header. 
+     *                      header.
      */
     public void setHeader(String newContents) {
         greeting.setText(newContents);
@@ -366,17 +366,17 @@ class Header {
 }
 
 /**
- * The receipt class for the GUI. 
- * 
- * Provides a visual display of the receipt, with edit functionality. 
- * 
+ * The receipt class for the GUI.
+ *
+ * Provides a visual display of the receipt, with edit functionality.
+ *
  * @author Adam Sinck
  * @version 0.0
  */
 class Receipt implements ListSelectionListener {
     /**
      * This is the container for the entire GUI representation of the
-     * receipt. 
+     * receipt.
      */
     private JPanel container;
     /**
@@ -386,7 +386,7 @@ class Receipt implements ListSelectionListener {
     private DefaultListModel<ReceiptItem> receiptList;
     private JLabel infoBar;
     private double total;
-    
+
     /**
      * The function buttons.
      */
@@ -394,7 +394,7 @@ class Receipt implements ListSelectionListener {
 
     /**
      * Class constructor.
-     * 
+     *
      * @param listener   The action listener.
      */
     public Receipt(ActionListener listener) {
@@ -417,7 +417,7 @@ class Receipt implements ListSelectionListener {
 
         // //This is an example item. This should be removed once any
         // //implementation is in place. Also, this should use this
-        // //class's function for adding the item. 
+        // //class's function for adding the item.
         // receiptList.addElement(new ReceiptItem("Carrots", 2, 1.50));
         /*
           This is in a 3x4 grid; the receipt display is 3x2 units.
@@ -448,23 +448,23 @@ class Receipt implements ListSelectionListener {
         layout.gridwidth = 3;
         layout.gridheight = 2;
         container.add(receipt, layout);
-        
+
         layout.gridwidth = 1;
         layout.gridheight = 1;
         layout.weighty = 0.0;
-        
+
         printButton = new JButton("Print");
         printButton.addActionListener(listener);
         layout.gridx = 0;
         layout.gridy = 2;
         container.add(printButton, layout);
-        
+
         emailButton = new JButton("Email");
         emailButton.addActionListener(listener);
         layout.gridx = 1;
         layout.gridy = 2;
         container.add(emailButton, layout);
-        
+
         removeButton = new JButton("Remove");
         removeButton.addActionListener(listener);
         layout.gridx = 2;
@@ -473,7 +473,7 @@ class Receipt implements ListSelectionListener {
 
 
         infoBar = new JLabel("Total: $" + String.format("%.2f", total));
-        
+
         layout.fill = GridBagConstraints.HORIZONTAL;
         layout.anchor = GridBagConstraints.PAGE_END;
         layout.gridx = 0;
@@ -481,10 +481,10 @@ class Receipt implements ListSelectionListener {
         layout.gridwidth = 3;
         container.add(infoBar, layout);
     }
-    
+
     /**
      * The getter function for the containing GUI of this class.
-     * 
+     *
      * @return The container containing the entire GUI of this class.
      */
     public JPanel getReceiptPanel() {
@@ -506,7 +506,7 @@ class Receipt implements ListSelectionListener {
 
     /**
      * Updates an item in the list.
-     * 
+     *
      * @param item      The item to update the current selection to
      */
     public void updateItem(ReceiptItem newItem) {
@@ -518,12 +518,12 @@ class Receipt implements ListSelectionListener {
             total += newItem.getTotal();
             items.set(index, newItem);
         }
-    }    
-    
+    }
+
     /**
-     * Removes an item from the list. 
-     * 
-     * No parameters; this checks what item is selected. 
+     * Removes an item from the list.
+     *
+     * No parameters; this checks what item is selected.
      */
     public void removeItem() {
         //A better implementation might be to strikethrough the item
@@ -544,22 +544,22 @@ class Receipt implements ListSelectionListener {
         items.removeAllElements();
         total = 0.0;
     }
-            
+
     /**
      * Sets the selection in the receipt display.
-     * 
+     *
      * @param index     the index to set the selection to
      */
     public void setSelection(int index) {
         receipt.setSelectedIndex(index);
     }
-    
+
     /**
      * Gets the index of the currently selected item in the receipt
-     * list. 
-     * 
+     * list.
+     *
      * @return the index of the currently selected item in the receipt
-     * list 
+     * list
      */
     public int getSelection() {
         return receipt.getSelectedIndex();
@@ -567,9 +567,9 @@ class Receipt implements ListSelectionListener {
 
     /**
      * The getter function for the subtotal
-     * 
+     *
      * Tax? Never heard of it.
-     * 
+     *
      * @return The subtotal
      */
     public double getTotal() {
@@ -579,9 +579,9 @@ class Receipt implements ListSelectionListener {
 
     /**
      * The getter function for the currently selected item.
-     * 
+     *
      * @return The currently selected item, or null if no item is
-     *         selected. 
+     *         selected.
      */
     public ReceiptItem getItem() {
         DefaultListModel items = (DefaultListModel) receipt.getModel();
@@ -591,11 +591,11 @@ class Receipt implements ListSelectionListener {
         }
         return null;
     }
-    
+
     /**
      * The getter function for the print button. Useful for
      * identifying what button was pressed.
-     * 
+     *
      * @return The print button.
      */
     public JButton getPrintButton() {
@@ -605,37 +605,37 @@ class Receipt implements ListSelectionListener {
     /**
      * The getter function for the email button. Useful for
      * identifying what button was pressed.
-     * 
+     *
      * @return The email button.
-     */    
+     */
     public JButton getEmailButton() {
         return emailButton;
     }
-    
+
     /**
      * The getter function for the remove button. Useful for
      * identifying what button was pressed.
-     * 
+     *
      * @return The remove button.
      */
     public JButton getRemoveButton() {
         return removeButton;
     }
-    
+
     /**
      * The action listener for the user clicking on an item in the
      * receipt item list.
-     * @param e         The list selection event. 
+     * @param e         The list selection event.
      */
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        
+
         // if (e.getValueIsAdjusting() == false) {
-            
+
         //     if (list.getSelectedIndex() == -1) {
         //         //No selection, disable fire button.
         //         fireButton.setEnabled(false);
-                
+
         //     }
         //     else {
         //         //Selection, enable the fire button.
@@ -648,8 +648,8 @@ class Receipt implements ListSelectionListener {
 
 
 /**
- * The class for the main display. 
- * 
+ * The class for the main display.
+ *
  * This is where most of the user interaction will occur. This will
  * contain functionality for the following:
  * * Item attribute viewing / editing (name, price, quantity)
@@ -657,32 +657,47 @@ class Receipt implements ListSelectionListener {
  *   subscriptions, and the like
  * * Coupon input
  * * Manager overrides.
- * 
+ *
  * @author Adam Sinck
  * @version 0.0
  */
 class Display {
     /**
      * This is the container for the entire GUI representation of the
-     * display. 
+     * display.
      */
     private JPanel container;
-    private CustomerInfo ci;
-    
+    private JTabbedPane tabbedPane;
+    private CustomerInfo customerInfo;
+    private ItemInput itemInput;
+
     /**
      * Class constructor.
-     * 
+     *
      * @param listener   The action listener.
      */
     public Display(ActionListener listener) {
         container = new JPanel();
-        ci = new CustomerInfo(listener);
-        container.add(ci.getCustomerInfo());
+        tabbedPane = new JTabbedPane();
+        container.add(tabbedPane);
+        
+        itemInput = new ItemInput();
+        tabbedPane.addTab("Current item", itemInput.getItemInput());
+        
+        customerInfo = new CustomerInfo(listener);
+        tabbedPane.addTab("Customer info", customerInfo.getCustomerInfo());
+
+        // tabbedPane.addTab("Manual input");
+        // tabbedPane.addTab("Current item", iteminput);
+        
+        // container.add(itemInput.getItemInput());
+        
+        // container.add(ci.getCustomerInfo());
     }
 
     /**
      * The getter function for the containing GUI of this class.
-     * 
+     *
      * @return The container containing the entire GUI of this class.
      */
     public JPanel getDisplay() {
@@ -691,53 +706,53 @@ class Display {
 }
 
 /**
- * The footer class for the GUI. 
- * 
+ * The footer class for the GUI.
+ *
  * Provides a basic footer for the user interface. This also contains
  * function buttons - Print receipt, email virtual receipt, remove
- * item from receipt, and cancel transaction. 
- * 
+ * item from receipt, and cancel transaction.
+ *
  * @author Adam Sinck
  * @version 0.0
  */
 class Footer {
     /**
      * This is the container for the entire GUI representation of the
-     * footer class. 
+     * footer class.
      */
     private JPanel container;
     /**
      * The status message to be displayed
      */
     private JLabel status;
-    
+
     //These buttons might be better placed somewhere else
-    
+
     public JButton cancelButton;
-    
+
     /**
      * Class constructor.
-     * 
+     *
      * Calls the other constructor, telling it that the initial
-     * message is "ready". 
-     * 
+     * message is "ready".
+     *
      * @param listener   The action listener.
      */
     public Footer(ActionListener listener) {
         this(listener, "Ready");
     }
-    
+
     /**
      * Class constructor specifying the status message to be
-     * displayed. 
-     * 
+     * displayed.
+     *
      * @param listener   The action listener.
-     * @param message    The status message to be displayed. 
+     * @param message    The status message to be displayed.
      */
     public Footer(ActionListener listener, String message) {
         container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
-        
+
         cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(listener);
         container.add(cancelButton);
@@ -747,10 +762,10 @@ class Footer {
         container.add(status);
     }
 
-    
+
     /**
      * The setter function for the status message.
-     * 
+     *
      * @param newStatus   The new status message.
      */
     public void setStatus(String newStatus) {
@@ -758,8 +773,8 @@ class Footer {
     }
 
     /**
-     * The getter function for the status message. 
-     * 
+     * The getter function for the status message.
+     *
      * @return The status message.
      */
     public String getStatus() {
@@ -770,16 +785,16 @@ class Footer {
     /**
      * The getter function for the cancel button. Useful for
      * identifying what button was pressed.
-     * 
+     *
      * @return The cancel button.
      */
     public JButton getCancelButton() {
         return cancelButton;
     }
-    
+
     /**
      * The getter function for the containing GUI of this class.
-     * 
+     *
      * @return The container containing the entire GUI of this class.
      */
     public JPanel getFooter() {
@@ -789,15 +804,15 @@ class Footer {
 
 
 // /**
-//  * The class for custom rendering of receipt items. 
-//  * 
+//  * The class for custom rendering of receipt items.
+//  *
 //  * @author Adam Sinck
 //  * @version 0.0
 //  */
 // class ReceiptItemRenderer extends JCheckBox implements ListCellRenderer<ReceiptItem> {
 
 //     // private ReceiptItem receiptItem;
-    
+
 //     public ReceiptItemRenderer() {
 //         // receiptItem = new ReceiptItem("Pickles", 50, 1.75);
 //     }
@@ -820,8 +835,8 @@ class Footer {
 
 
 /**
- * The class for items on a receipt. Contains basic item information. 
- * 
+ * The class for items on a receipt. Contains basic item information.
+ *
  * @author Adam Sinck
  * @version 0.0
  */
@@ -830,10 +845,10 @@ class ReceiptItem {
     private int count;
     private double price;
     private boolean priceOverride;
-    
+
     /**
      * Class constructor.
-     * 
+     *
      * @param _name     The name of the item.
      * @param _count    The number of the item being purchased.
      * @param _price    The price of this item.
@@ -846,17 +861,17 @@ class ReceiptItem {
     }
 
     /**
-     * The getter function for the item name. 
-     * 
+     * The getter function for the item name.
+     *
      * @return The item name.
      */
     public String getName() {
         return name;
     }
-    
+
     /**
-     * The setter function for the item name. 
-     * 
+     * The setter function for the item name.
+     *
      * @param newName   The new item name.
      */
     public void setName(String newName) {
@@ -865,34 +880,34 @@ class ReceiptItem {
 
     /**
      * The getter function for the count.
-     * 
+     *
      * @return The count.
      */
     public int getCount() {
         return count;
     }
-    
+
     /**
      * The setter function for the count
-     * 
+     *
      * @param newCount   The new count.
      */
     public void setCount(int newCount) {
         count = newCount;
     }
-    
+
     /**
      * The getter function for the price.
-     * 
+     *
      * @return The price per item.
      */
     public double getPrice() {
         return price;
     }
-    
+
     /**
      * The setter function for the price
-     * 
+     *
      * @param newPrice   The new price per item.
      */
     public void setPrice(double newPrice) {
@@ -911,8 +926,8 @@ class ReceiptItem {
     }
 
     /**
-     * The toString of the class. 
-     * 
+     * The toString of the class.
+     *
      * @return The String representation of an item.
      */
     public String toString() {
@@ -931,50 +946,104 @@ class ReceiptItem {
  *
  * Provides a GUI for inputting or editing an item.
  * 
+ * This implements its own action listener, because the two buttons in
+ * question edit a field that this class contains. 
+ *
  * @author Adam Sinck
  * @version 0.0
  */
-class ItemInput {    
+class ItemInput {
     /**
      * This is the container for the entire GUI representation of the
      * item input class.
      */
     private JPanel container;
-    private JLabel header, itemName, priceLabel, quantityLabel;
-    private JButton plusButton, minusButton;
-    private JTextField nameOverrideInput, priceOverrideInput, quantityOverrideInput;
+    private JLabel header, nameLabel, priceLabel, quantityLabel;
+    private JTextField nameInput, priceInput, quantityInput;
     /**
      * The item that the GUI works with and returns.
      */
     private ReceiptItem item;
 
-    
+
     /**
      * Class constructor.
-     * 
+     *
      * Takes no arguments, calls the other constructor with a null
      * item as initialization.
      */
     public ItemInput() {
         this(null);
     }
-    
+
     /**
-     * Class constructor, accepting an initialization item. 
-     * 
-     * Takes an item and prepopulates the fields with it. 
-     * 
+     * Class constructor, accepting an initialization item.
+     *
+     * Takes an item and prepopulates the fields with it.
+     *
      * @param _item     The item to initialize with.
      */
     public ItemInput(ReceiptItem _item) {
         item = _item;
+
+        container = new JPanel();
+        container.setLayout(new GridBagLayout());
+        GridBagConstraints layout = new GridBagConstraints();
+        /*
+          +---------+-------+
+          |  Current Item   |
+          +---------+-------+
+          |  Name   | [___] |
+          +---------+-------+
+          |Price ($)| [___] |
+          +---------+-------+
+          |quantity | [___] |
+          +---------+-------+
+         */
+
+        nameLabel = new JLabel("Name");
+        priceLabel = new JLabel("Price ($)");
+        quantityLabel = new JLabel("Quantity");
+
+        nameInput = new JTextField(10);
+        priceInput = new JTextField(10);
+        quantityInput = new JTextField(10);
+        
+        layout.fill = GridBagConstraints.HORIZONTAL;
+        layout.anchor = GridBagConstraints.LINE_START;
+
+        layout.gridx = 0;
+        layout.gridy = 0;
+        layout.weightx = 1.0;
+        layout.weighty = 1.0;
+
+        container.add(nameLabel, layout);
+
+        layout.gridy = 1;
+        container.add(priceLabel, layout);
+
+        layout.gridy = 2;
+        container.add(quantityLabel, layout);
+
+        layout.anchor = GridBagConstraints.LINE_END;
+        
+        layout.gridx = 1;
+        layout.gridy = 0;
+        container.add(nameInput, layout);
+
+        layout.gridy = 1;
+        container.add(priceInput, layout);
+
+        layout.gridy = 2;
+        container.add(quantityInput, layout);
+        
     }
 
     /**
      * The getter function for the receipt item.
-     * 
-     * This parses all the user input fields and returns that. 
-     * 
+     *
+     * This parses all the user input fields and returns that.
+     *
      * @return The receipt item.
      */
     public ReceiptItem getItem() {
@@ -982,38 +1051,39 @@ class ItemInput {
     }
     /**
      * The setter function for the receipt item.
-     * 
-     * This sets the item to the provided one. 
-     * 
+     *
+     * This sets the item to the provided one.
+     *
      * @param newItem   The new item
      */
     public void setItem(ReceiptItem newItem) {
         item = newItem;
     }
 
-    
+
     /**
      * The getter function for the containing GUI of this class.
-     * 
+     *
      * @return The container containing the entire GUI of this class.
      */
     public JPanel getItemInput() {
         return container;
     }
+
 }
 
 
 
 /**
- * The customer info GUI for the main GUI. 
- * 
+ * The customer info GUI for the main GUI.
+ *
  * Provides an interface for filling in all the customer's
- * information. 
- * 
+ * information.
+ *
  * @author Adam Sinck
  * @version 0.0
  */
-class CustomerInfo {    
+class CustomerInfo {
     /**
      * This is the container for the entire GUI representation of the
      * customer input class.
@@ -1021,24 +1091,24 @@ class CustomerInfo {
     private JPanel container;
     private JLabel header, addressLabel, phoneNumberLabel,
         emailLabel, memberLabel, subscribeLabel;
-    public JButton subscribeYesButton, subscribeNoButton, 
+    public JButton subscribeYesButton, subscribeNoButton,
         memberYesButton, memberNoButton, addButton,
         updateButton, deleteButton;
     //TODO: make "state" a dropdown
     private JTextField addressL1Field, addressL2Field, cityField,
         stateField, emailField;
     private JFormattedTextField zipCodeField, phoneNumberField;
-    
+
     /**
      * Class constructor.
-     * 
+     *
      * @param listener   The action listener.
      */
     public CustomerInfo(ActionListener listener) {
         container = new JPanel();
         container.setLayout(new GridBagLayout());
         GridBagConstraints layout;
-        
+
         final int longFieldLength = 75;
         final int medFieldLength = 50;
         final int shortFieldLength = 25;
@@ -1076,17 +1146,17 @@ class CustomerInfo {
         cityField          = new JTextField(shortFieldLength);
         stateField         = new JTextField(shortFieldLength);
         emailField         = new JTextField(shortFieldLength);
-        
+
         zipCodeField       = new JFormattedTextField("#####");
         phoneNumberField   = new JFormattedTextField("###-###-####");
-        
+
         /*
           Now pack them
         */
-        
+
         // fill, anchor, gridx, gridy,
         // weightx, weighty, gridwidth, gridheight
-        
+
         // final int hz = GridBagConstraints.HORIZONTAL;
         // final int vt = GridBagConstraints.VERTICAL;
         // final int both = GridBagConstraints.BOTH;
@@ -1098,16 +1168,16 @@ class CustomerInfo {
 
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_START, 0, 1, 1, 0, 2, 1);
         container.add(addressLabel, layout);
-        
+
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_START, 0, 4, 1, 0, 1, 1);
         container.add(phoneNumberLabel, layout);
-        
+
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_START, 0, 5, 1, 0, 1, 1);
         container.add(emailLabel, layout);
 
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_START, 0, 6, 1, 0, 1, 1);
         container.add(memberLabel, layout);
-        
+
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_START, 0, 7, 1, 0, 1, 1);
         container.add(subscribeLabel, layout);
 
@@ -1119,41 +1189,41 @@ class CustomerInfo {
 
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_START, 1, 6, 0, 0, 1, 1);
         container.add(memberYesButton, layout);
-        
+
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_START, 2, 6, 0, 0, 1, 1);
         container.add(memberNoButton, layout);
-        
+
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_START, 1, 7, 0, 0, 1, 1);
         container.add(subscribeYesButton, layout);
-        
+
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_START, 2, 7, 0, 0, 1, 1);
         container.add(subscribeNoButton, layout);
-        
+
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_START, 0, 8, 0, 0, 1, 1);
         container.add(addButton, layout);
-        
+
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_START, 1, 8, 0, 0, 1, 1);
         container.add(updateButton, layout);
-        
+
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_START, 2, 8, 0, 0, 1, 1);
         container.add(deleteButton, layout);
 
         // input fields
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_END, 1, 1, 0, 0, 2, 1);
         container.add(addressL1Field, layout);
-        
+
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_END, 1, 2, 0, 0, 2, 1);
         container.add(addressL2Field, layout);
-        
+
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_START, 0, 3, 0, 0, 1, 1);
         container.add(cityField, layout);
-        
+
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.CENTER, 1, 3, 0, 0, 1, 1);
         container.add(stateField, layout);
-        
+
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_END, 2, 3, 0, 0, 2, 1);
         container.add(zipCodeField, layout);
-        
+
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_END, 1, 4, 0, 0, 2, 1);
         container.add(phoneNumberField, layout);
 
@@ -1171,8 +1241,8 @@ class CustomerInfo {
         // layout.gridwidth = 3;
         // layout.gridheight = 1;
         // container.add(receipt, layout);
-        
-        
+
+
         // layout.fill = GridBagConstraints.HORIZONTAL;
         // layout.anchor = GridBagConstraints.PAGE_END;
         // layout.gridx = 1;
@@ -1181,31 +1251,31 @@ class CustomerInfo {
         // layout.gridwidth = 3;
         // layout.gridheight = 1;
         // container.add(infoBar, layout);
-        
+
     }
 
 
     /**
      * The getter function for the containing GUI of this class.
-     * 
+     *
      * @return The container containing the entire GUI of this class.
      */
     public JPanel getCustomerInfo() {
         return container;
     }
 
-    
+
     /**
      * Generates a layout and returns it. This method was written to
      * shorten the code, allowing a single function call for a new
-     * layout specification. 
-     * 
+     * layout specification.
+     *
      * There is a tradeoff though: it makes the code much cleaner and
      * more readable, but all eight attributes used per layout are set
      * every time. If this function was not used, many of these
      * assignments could be skipped: they would still be set from the
-     * previous time. 
-     * 
+     * previous time.
+     *
      * @param fill              the layout fill parameter
      * @param anchor            the layout anchor parameter
      * @param gridy             the layout gridx parameter
@@ -1239,24 +1309,24 @@ class CustomerInfo {
 /**
  * The Model class for the MVC architecture. This handles all
  * significant data operations, including adding, editing, and
- * deleting. As follows, this handles all database interaction. 
- * 
+ * deleting. As follows, this handles all database interaction.
+ *
  * @author Adam Sinck
  * @version 0.0
  */
 class Model {
-    
+
     /**
      * Class constructor.
      */
     public Model() {
-        
+
     }
 
     /**
      * Looks up the item code in the database and returns the item if
      * found and null otherwise.
-     * 
+     *
      * @param code      The item code to look up
      * @return the item correstponding to the given item code, or null
      *         if not found
@@ -1264,11 +1334,11 @@ class Model {
     public ReceiptItem itemLookup(int code) {
         return null;
     }
-    
+
     /**
      * Looks up the customer phone number in the database and returns
      * the account if found and null otherwise.
-     * 
+     *
      * @param number    The number to look up
      * @return the customer correstponding to the given number, or
      *         null if not found
@@ -1281,7 +1351,7 @@ class Model {
 
 /**
  * The class for a customer's info. Contains basic information.
- * 
+ *
  * @author Adam Sinck
  * @version 0.0
  */
@@ -1292,7 +1362,7 @@ class Customer {
 
     /**
      * Class constructor.
-     * 
+     *
      * @param addressL1         Address line 1
      * @param addressL2         Address line 2
      * @param city              City
@@ -1331,16 +1401,16 @@ class Customer {
 
     // /**
     //  * The getter function for %s
-    //  * 
+    //  *
     //  * @return %s
     //  */
     // public String get%s() {
     //     return %s;
     // }
-    
+
     // /**
     //  * The setter function for %s
-    //  * 
+    //  *
     //  * @param new%s, the new %s
     //  */
     // public String set%s(String new%s) {
@@ -1349,16 +1419,16 @@ class Customer {
 
     /**
      * The getter function for addressL1
-     * 
+     *
      * @return addressL1
      */
     public String getAddressL1() {
         return addressL1;
     }
-    
+
     /**
      * The setter function for addressL1
-     * 
+     *
      * @param newAddressL1, the new addressL1
      */
     public void setAddressL1(String newAddressL1) {
@@ -1366,16 +1436,16 @@ class Customer {
     }
     /**
      * The getter function for addressL2
-     * 
+     *
      * @return addressL2
      */
     public String getAddressL2() {
         return addressL2;
     }
-    
+
     /**
      * The setter function for addressL2
-     * 
+     *
      * @param newAddressL2, the new addressL2
      */
     public void setAddressL2(String newAddressL2) {
@@ -1383,16 +1453,16 @@ class Customer {
     }
     /**
      * The getter function for city
-     * 
+     *
      * @return city
      */
     public String getCity() {
         return city;
     }
-    
+
     /**
      * The setter function for city
-     * 
+     *
      * @param newCity, the new city
      */
     public void setCity(String newCity) {
@@ -1400,16 +1470,16 @@ class Customer {
     }
     /**
      * The getter function for state
-     * 
+     *
      * @return state
      */
     public String getState() {
         return state;
     }
-    
+
     /**
      * The setter function for state
-     * 
+     *
      * @param newState, the new state
      */
     public void setState(String newState) {
@@ -1417,16 +1487,16 @@ class Customer {
     }
     /**
      * The getter function for zip
-     * 
+     *
      * @return zip
      */
     public int getZip() {
         return zip;
     }
-    
+
     /**
      * The setter function for zip
-     * 
+     *
      * @param newZip, the new zip
      */
     public void setZip(int newZip) {
@@ -1434,16 +1504,16 @@ class Customer {
     }
     /**
      * The getter function for email
-     * 
+     *
      * @return email
      */
     public String getEmail() {
         return email;
     }
-    
+
     /**
      * The setter function for email
-     * 
+     *
      * @param newEmail, the new email
      */
     public void setEmail(String newEmail) {
@@ -1451,16 +1521,16 @@ class Customer {
     }
     /**
      * The getter function for phoneNumber
-     * 
+     *
      * @return phoneNumber
      */
     public int getPhonenumber() {
         return phoneNumber;
     }
-    
+
     /**
      * The setter function for phoneNumber
-     * 
+     *
      * @param newPhoneNumber, the new phoneNumber
      */
     public void setPhonenumber(int newPhoneNumber) {
@@ -1468,16 +1538,16 @@ class Customer {
     }
     /**
      * The getter function for member
-     * 
+     *
      * @return member
      */
     public boolean getMember() {
         return member;
     }
-    
+
     /**
      * The setter function for member
-     * 
+     *
      * @param newMember, the new member
      */
     public void setMember(boolean newMember) {
@@ -1485,20 +1555,20 @@ class Customer {
     }
     /**
      * The getter function for subscribe
-     * 
+     *
      * @return subscribe
      */
     public boolean getSubscribe() {
         return subscribe;
     }
-    
+
     /**
      * The setter function for subscribe
-     * 
+     *
      * @param newSubscribe, the new subscribe
      */
     public void setSubscribe(boolean newSubscribe) {
         subscribe = newSubscribe;
     }
-    
+
 }
