@@ -8,14 +8,14 @@ import static org.junit.Assert.assertEquals;
 public class CustomerTest {
 
     //http://www.fakenamegenerator.com/
-    String al1 = "184 Broadcast Drive";
-    String al2 = "";
-    String city = "Chantilly";
-    String state = "VA";
-    int zip = 22021;
-    String email = "example@example.com";
-    int phoneNumber = 1234567890;
-    boolean member = true;
+    String al1        = "184 Broadcast Drive";
+    String al2        = "";
+    String city       = "Chantilly";
+    String state      = "VA";
+    int zip           = 22021;
+    String email      = "example@example.com";
+    int phoneNumber   = 1234567890;
+    boolean member    = true;
     boolean subscribe = false;
     Customer customer =
         new Customer(al1, al2, city, state, zip, email,

@@ -7,8 +7,8 @@ import static org.junit.Assert.assertEquals;
 
 public class ItemInputTest {
     ItemInput emptyItem = new ItemInput();
-    ItemInput nullItem = new ItemInput(null);
-    ReceiptItem item = new ReceiptItem("item", 1, 2.50);
+    ItemInput nullItem  = new ItemInput(null);
+    ReceiptItem item    = new ReceiptItem("item", 1, 2.50);
     ItemInput initdItem = new ItemInput(item);
     
     @Test

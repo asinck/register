@@ -88,44 +88,44 @@ class RegisterGUI extends JFrame implements ActionListener {
         myWindow.setJMenuBar(applicationMenu.getMenuBar());
 
         //fill the top horizontally
-        header = new Header(this, "asinck");
-        layout.fill = GridBagConstraints.HORIZONTAL;
-        layout.anchor = GridBagConstraints.FIRST_LINE_START;
-        layout.gridx = 0;
-        layout.gridy = 0;
+        header           = new Header(this, "asinck");
+        layout.fill      = GridBagConstraints.HORIZONTAL;
+        layout.anchor    = GridBagConstraints.FIRST_LINE_START;
+        layout.gridx     = 0;
+        layout.gridy     = 0;
         layout.gridwidth = 3;
-        layout.weightx = 1.0;
+        layout.weightx   = 1.0;
         myWindow.add(header.getHeader(), layout);
 
         //make it fill the the left side up to the header and footer
-        receipt = new Receipt(this);
-        layout.fill = GridBagConstraints.BOTH;
-        layout.anchor = GridBagConstraints.LINE_START;
-        layout.gridx = 0;
-        layout.gridy = 1;
-        layout.weighty = 1.0;
+        receipt          = new Receipt(this);
+        layout.fill      = GridBagConstraints.BOTH;
+        layout.anchor    = GridBagConstraints.LINE_START;
+        layout.gridx     = 0;
+        layout.gridy     = 1;
+        layout.weighty   = 1.0;
         layout.gridwidth = 1;
         myWindow.add(receipt.getReceiptPanel(), layout);
 
         //For the main display, to the right of the receipt display.
-        display = new Display(this);
-        layout.fill = GridBagConstraints.BOTH;
-        layout.anchor = GridBagConstraints.CENTER;
-        layout.gridx = 1;
-        layout.gridy = 1;
-        layout.weightx = 1.0;
-        layout.weighty = 1.0;
+        display          = new Display(this);
+        layout.fill      = GridBagConstraints.BOTH;
+        layout.anchor    = GridBagConstraints.CENTER;
+        layout.gridx     = 1;
+        layout.gridy     = 1;
+        layout.weightx   = 1.0;
+        layout.weighty   = 1.0;
         layout.gridwidth = 2;
         myWindow.add(display.getDisplay(), layout);
 
         //have a footer for status and stuff
-        footer = new Footer(this);
-        layout.fill = GridBagConstraints.HORIZONTAL;
-        layout.anchor = GridBagConstraints.LAST_LINE_START;
-        layout.gridx = 0;
-        layout.gridy = 2;
-        layout.weightx = 1.0;
-        layout.weighty = 0.0;
+        footer           = new Footer(this);
+        layout.fill      = GridBagConstraints.HORIZONTAL;
+        layout.anchor    = GridBagConstraints.LAST_LINE_START;
+        layout.gridx     = 0;
+        layout.gridy     = 2;
+        layout.weightx   = 1.0;
+        layout.weighty   = 0.0;
         layout.gridwidth = 3;
         myWindow.add(footer.getFooter(), layout);
 
@@ -439,46 +439,46 @@ class Receipt implements ListSelectionListener {
         +----------------------+
 
         */
-        layout.fill = GridBagConstraints.BOTH;
-        layout.anchor = GridBagConstraints.PAGE_START;
-        layout.gridx = 0;
-        layout.gridy = 0;
-        layout.weightx = 1.0;
-        layout.weighty = 1.0;
-        layout.gridwidth = 3;
+        layout.fill       = GridBagConstraints.BOTH;
+        layout.anchor     = GridBagConstraints.PAGE_START;
+        layout.gridx      = 0;
+        layout.gridy      = 0;
+        layout.weightx    = 1.0;
+        layout.weighty    = 1.0;
+        layout.gridwidth  = 3;
         layout.gridheight = 2;
         container.add(receipt, layout);
 
-        layout.gridwidth = 1;
+        layout.gridwidth  = 1;
         layout.gridheight = 1;
-        layout.weighty = 0.0;
+        layout.weighty    = 0.0;
 
-        printButton = new JButton("Print");
+        printButton       = new JButton("Print");
         printButton.addActionListener(listener);
-        layout.gridx = 0;
-        layout.gridy = 2;
+        layout.gridx      = 0;
+        layout.gridy      = 2;
         container.add(printButton, layout);
 
-        emailButton = new JButton("Email");
+        emailButton       = new JButton("Email");
         emailButton.addActionListener(listener);
-        layout.gridx = 1;
-        layout.gridy = 2;
+        layout.gridx      = 1;
+        layout.gridy      = 2;
         container.add(emailButton, layout);
 
-        removeButton = new JButton("Remove");
+        removeButton      = new JButton("Remove");
         removeButton.addActionListener(listener);
-        layout.gridx = 2;
-        layout.gridy = 2;
+        layout.gridx      = 2;
+        layout.gridy      = 2;
         container.add(removeButton, layout);
 
 
         infoBar = new JLabel("Total: $" + String.format("%.2f", total));
 
-        layout.fill = GridBagConstraints.HORIZONTAL;
-        layout.anchor = GridBagConstraints.PAGE_END;
-        layout.gridx = 0;
-        layout.gridy = 3;
-        layout.gridwidth = 3;
+        layout.fill       = GridBagConstraints.HORIZONTAL;
+        layout.anchor     = GridBagConstraints.PAGE_END;
+        layout.gridx      = 0;
+        layout.gridy      = 3;
+        layout.gridwidth  = 3;
         container.add(infoBar, layout);
     }
 
@@ -876,9 +876,9 @@ class ReceiptItem {
      * @param _price    The price of this item.
      */
     public ReceiptItem(String _name, int _count, double _price) {
-        name = _name;
-        count = _count;
-        price = _price;
+        name          = _name;
+        count         = _count;
+        price         = _price;
         priceOverride = false;
     }
 
@@ -1052,13 +1052,13 @@ class ItemInput {
           +---------+-------+
          */
 
-        nameLabel = new JLabel("Name");
-        priceLabel = new JLabel("Price ($)");
-        quantityLabel = new JLabel("Quantity");
+        nameLabel         = new JLabel("Name");
+        priceLabel        = new JLabel("Price ($)");
+        quantityLabel     = new JLabel("Quantity");
         
-        nameInput = new JTextField(10);
-        priceInput = new JTextField(10);
-        quantityInput = new JTextField(10);
+        nameInput         = new JTextField(10);
+        priceInput        = new JTextField(10);
+        quantityInput     = new JTextField(10);
         
         if (item != null) {
             nameInput.setText(item.getName());
@@ -1066,13 +1066,13 @@ class ItemInput {
             quantityInput.setText("" + item.getCount());
         }
             
-        layout.fill = GridBagConstraints.HORIZONTAL;
-        layout.anchor = GridBagConstraints.LINE_START;
+        layout.fill       = GridBagConstraints.HORIZONTAL;
+        layout.anchor     = GridBagConstraints.LINE_START;
 
-        layout.gridx = 0;
-        layout.gridy = 0;
-        layout.weightx = 1.0;
-        layout.weighty = 1.0;
+        layout.gridx      = 0;
+        layout.gridy      = 0;
+        layout.weightx    = 1.0;
+        layout.weighty    = 1.0;
 
         container.add(nameLabel, layout);
 
@@ -1104,8 +1104,8 @@ class ItemInput {
      * @return The receipt item.
      */
     public ReceiptItem getItem() {
-        String parsedName = nameInput.getText();
-        String parsedPrice = priceInput.getText();
+        String parsedName     = nameInput.getText();
+        String parsedPrice    = priceInput.getText();
         String parsedQuantity = quantityInput.getText();
 
         double price = 0.0;
@@ -1118,9 +1118,9 @@ class ItemInput {
         }
         
         try {
-            price = Double.parseDouble(parsedPrice.trim());
-            quantity = Integer.parseInt(parsedQuantity.trim());
-            item = new ReceiptItem(parsedName, quantity, price);
+            price     = Double.parseDouble(parsedPrice.trim());
+            quantity  = Integer.parseInt(parsedQuantity.trim());
+            item      = new ReceiptItem(parsedName, quantity, price);
             return item;
         }
         catch (NumberFormatException e) {
@@ -1193,10 +1193,10 @@ class CustomerInfo {
         container.setLayout(new GridBagLayout());
         GridBagConstraints layout;
 
-        final int longFieldLength = 75;
-        final int medFieldLength = 50;
+        final int longFieldLength  = 75;
+        final int medFieldLength   = 50;
         final int shortFieldLength = 25;
-        final int tinyFieldLength = 10;
+        final int tinyFieldLength  = 10;
 
         /*
           First, make all the components
@@ -1372,13 +1372,13 @@ class CustomerInfo {
      */
     private GridBagConstraints layoutGenerator(int fill, int anchor, int gridx, int gridy, double weightx, double weighty, int gridwidth, int gridheight) {
         GridBagConstraints layout = new GridBagConstraints();
-        layout.fill = fill;
-        layout.anchor = anchor;
-        layout.gridx = gridx;
-        layout.gridy = gridy;
-        layout.weightx = weightx;
-        layout.weighty = weighty;
-        layout.gridwidth = gridwidth;
+        layout.fill       = fill;
+        layout.anchor     = anchor;
+        layout.gridx      = gridx;
+        layout.gridy      = gridy;
+        layout.weightx    = weightx;
+        layout.weighty    = weighty;
+        layout.gridwidth  = gridwidth;
         layout.gridheight = gridheight;
         return layout;
     }
@@ -1460,15 +1460,15 @@ class Customer {
     Customer(String _addressL1, String _addressL2, String _city,
              String _state, int _zip, String _email, int _phoneNumber,
              boolean _member, boolean _subscribe) {
-        addressL1 = _addressL1;
-        addressL2 = _addressL2;
-        city = _city;
-        state = _state;
-        zip = _zip;
-        email = _email;
-        phoneNumber = _phoneNumber;
-        member = _member;
-        subscribe = _subscribe;
+        addressL1    = _addressL1;
+        addressL2    = _addressL2;
+        city         = _city;
+        state        = _state;
+        zip          = _zip;
+        email        = _email;
+        phoneNumber  = _phoneNumber;
+        member       = _member;
+        subscribe    = _subscribe;
     }
 
 
