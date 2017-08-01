@@ -980,6 +980,17 @@ class ItemInput {
     public ReceiptItem getItem() {
         return item;
     }
+    /**
+     * The setter function for the receipt item.
+     * 
+     * This sets the item to the provided one. 
+     * 
+     * @param newItem   The new item
+     */
+    public void setItem(ReceiptItem newItem) {
+        item = newItem;
+    }
+
     
     /**
      * The getter function for the containing GUI of this class.
