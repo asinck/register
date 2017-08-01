@@ -667,10 +667,12 @@ class Display {
      * display.
      */
     private JPanel container;
+    private JPanel currentItemTab, manualInputTab, customerTab;
     private JTabbedPane tabbedPane;
     private CustomerInfo customerInfo;
-    private ItemInput itemInput;
-
+    private ItemInput itemInput, manualInput;
+    private JButton itemUpdateButton, itemAddButton;
+    
     /**
      * Class constructor.
      *
@@ -680,19 +682,39 @@ class Display {
         container = new JPanel();
         tabbedPane = new JTabbedPane();
         container.add(tabbedPane);
-        
-        itemInput = new ItemInput();
-        tabbedPane.addTab("Current item", itemInput.getItemInput());
-        
-        customerInfo = new CustomerInfo(listener);
-        tabbedPane.addTab("Customer info", customerInfo.getCustomerInfo());
 
-        // tabbedPane.addTab("Manual input");
-        // tabbedPane.addTab("Current item", iteminput);
+        //The default tab - automatic input
+        currentItemTab = new JPanel();
+        currentItemTab.setLayout(new BoxLayout(currentItemTab,
+                                               BoxLayout.Y_AXIS));
+        itemInput = new ItemInput();
+        currentItemTab.add(itemInput.getItemInput());
+        itemUpdateButton = new JButton("Update");
+        itemUpdateButton.addActionListener(listener);
+        currentItemTab.add(itemUpdateButton);
         
-        // container.add(itemInput.getItemInput());
+        //the manual input tab
+        manualInputTab = new JPanel();
+        manualInputTab.setLayout(new BoxLayout(manualInputTab,
+                                               BoxLayout.Y_AXIS));
+        manualInput = new ItemInput();
+        manualInputTab.add(manualInput.getItemInput());
+        itemAddButton = new JButton("Add");
+        itemAddButton.addActionListener(listener);
+        manualInputTab.add(itemAddButton);
+
+        //the customer info editor tab
+        customerTab = new JPanel();
+        customerTab.setLayout(new BoxLayout(customerTab,
+                                            BoxLayout.Y_AXIS));
+        customerInfo = new CustomerInfo(listener);
+        customerTab.add(customerInfo.getCustomerInfo());
         
-        // container.add(ci.getCustomerInfo());
+
+        
+        tabbedPane.addTab("Current item", currentItemTab);
+        tabbedPane.addTab("Manual input", manualInputTab);
+        tabbedPane.addTab("Customer info", customerTab);
     }
 
     /**
@@ -938,6 +960,35 @@ class ReceiptItem {
         returnString += " = $" + String.format("%.2f", (count * price));
         return returnString;
     }
+
+
+    
+    /**
+     * The .equals() method for this class.
+     *
+     * http://www.geeksforgeeks.org/overriding-equals-method-in-java/
+     * 
+     * @param obj       the other object to test
+     * @return true if equal, false otherwise
+     */
+    @Override
+    public boolean equals(Object obj) {
+        // If the object is compared with itself then return true  
+        if (obj == this) {
+            return true;
+        }
+ 
+        if (!(obj instanceof ReceiptItem)) {
+            return false;
+        }
+         
+        // typecast o to Complex so that we can compare data members 
+        ReceiptItem ri = (ReceiptItem) obj;
+         
+        // Compare the data members and return accordingly 
+        return name.equals(ri.getName()) &&
+            Double.compare(price, ri.getPrice()) == 0;
+    }
 }
 
 
@@ -1004,11 +1055,17 @@ class ItemInput {
         nameLabel = new JLabel("Name");
         priceLabel = new JLabel("Price ($)");
         quantityLabel = new JLabel("Quantity");
-
+        
         nameInput = new JTextField(10);
         priceInput = new JTextField(10);
         quantityInput = new JTextField(10);
         
+        if (item != null) {
+            nameInput.setText(item.getName());
+            priceInput.setText("" + item.getPrice());
+            quantityInput.setText("" + item.getCount());
+        }
+            
         layout.fill = GridBagConstraints.HORIZONTAL;
         layout.anchor = GridBagConstraints.LINE_START;
 
@@ -1047,7 +1104,29 @@ class ItemInput {
      * @return The receipt item.
      */
     public ReceiptItem getItem() {
-        return item;
+        String parsedName = nameInput.getText();
+        String parsedPrice = priceInput.getText();
+        String parsedQuantity = quantityInput.getText();
+
+        double price = 0.0;
+        int quantity = 0;
+
+        if (parsedName.equals("") ||
+            parsedPrice.equals("") ||
+            parsedQuantity.equals("")) {
+            return null;
+        }
+        
+        try {
+            price = Double.parseDouble(parsedPrice.trim());
+            quantity = Integer.parseInt(parsedQuantity.trim());
+            item = new ReceiptItem(parsedName, quantity, price);
+            return item;
+        }
+        catch (NumberFormatException e) {
+            return null;
+        }
+        
     }
     /**
      * The setter function for the receipt item.
@@ -1057,6 +1136,11 @@ class ItemInput {
      * @param newItem   The new item
      */
     public void setItem(ReceiptItem newItem) {
+        if (newItem != null) {
+            nameInput.setText(newItem.getName());
+            priceInput.setText("" + newItem.getPrice());
+            quantityInput.setText("" + newItem.getCount());
+        }
         item = newItem;
     }
 
