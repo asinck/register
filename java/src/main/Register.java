@@ -73,7 +73,7 @@ class RegisterGUI extends JFrame implements ActionListener {
      * This arranges all the components of the GUI inside it.
      */
     public RegisterGUI() {
-        //This is the top level window.
+        //this is the top level window.
         myWindow = new JFrame();
         myWindow.setTitle("Register");
         myWindow.setSize(1200,500);
@@ -83,7 +83,7 @@ class RegisterGUI extends JFrame implements ActionListener {
         //specify how to lay stuff out
         GridBagConstraints layout = new GridBagConstraints();
 
-        //Create the menu bar
+        //create the menu bar
         applicationMenu = new ApplicationMenu(this);
         myWindow.setJMenuBar(applicationMenu.getMenuBar());
 
@@ -107,7 +107,7 @@ class RegisterGUI extends JFrame implements ActionListener {
         layout.gridwidth = 1;
         myWindow.add(receipt.getReceiptPanel(), layout);
 
-        //For the main display, to the right of the receipt display.
+        //for the main display, to the right of the receipt display.
         display          = new Display(this);
         layout.fill      = GridBagConstraints.BOTH;
         layout.anchor    = GridBagConstraints.CENTER;
