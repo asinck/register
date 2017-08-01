@@ -19,7 +19,7 @@ public class ItemInputTest {
         assertEquals(nullItem.getItem(), null);
         //make sure the initialized item has the item
         assertEquals(initdItem.getItem(), item);
-        //set the item of the null item and make sure it has it
+        // //set the item of the null item and make sure it has it
         nullItem.setItem(item);
         assertEquals(nullItem.getItem(), item);
 
