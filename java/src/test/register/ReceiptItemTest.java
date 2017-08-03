@@ -8,14 +8,14 @@ import static org.junit.Assert.assertNotEquals;
 
 
 public class ReceiptItemTest {
-    ReceiptItem eggs = new ReceiptItem("eggs", 1, 3.33);
-    
-    ReceiptItem A1 = new ReceiptItem("A", 1, 3.33);
-    ReceiptItem A2 = new ReceiptItem("A", 2, 3.33);
-    ReceiptItem A3 = new ReceiptItem("A", 1, 1.00);
-    ReceiptItem B1 = new ReceiptItem("B", 1, 3.33);
-    ReceiptItem B2 = new ReceiptItem("B", 2, 3.33);
-    ReceiptItem B3 = new ReceiptItem("B", 1, 1.00);
+    private ReceiptItem eggs = new ReceiptItem("eggs", 1, 3.33);
+
+    private ReceiptItem A1 = new ReceiptItem("A", 1, 3.33);
+    private ReceiptItem A2 = new ReceiptItem("A", 2, 3.33);
+    private ReceiptItem A3 = new ReceiptItem("A", 1, 1.00);
+    private ReceiptItem B1 = new ReceiptItem("B", 1, 3.33);
+    private ReceiptItem B2 = new ReceiptItem("B", 2, 3.33);
+    private ReceiptItem B3 = new ReceiptItem("B", 1, 1.00);
     
     @Test
     public void testReceiptItem() {

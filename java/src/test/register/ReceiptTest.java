@@ -8,17 +8,17 @@ import static org.junit.Assert.assertEquals;
 
 public class ReceiptTest {
 	
-    Receipt receipt = new Receipt(null);
+    private Receipt receipt = new Receipt(null);
 
     //No, I was not hungry when I wrote this.
     //Yes, I like perfect formatting.
-    ReceiptItem eggs     = new ReceiptItem("eggs",     1,    3.33);
-    ReceiptItem bacon    = new ReceiptItem("bacon",    12,   50.00);
-    ReceiptItem toast    = new ReceiptItem("toast",    5,    1.00);
-    ReceiptItem butter   = new ReceiptItem("butter",   1,    0.20);
-    ReceiptItem sausage  = new ReceiptItem("sausage",  500,  0.01);
-    ReceiptItem coffee   = new ReceiptItem("coffee",   10,   1.50);
-    ReceiptItem orange_juice = new ReceiptItem("orange juice", 2,   2.00);
+    private ReceiptItem eggs     = new ReceiptItem("eggs",     1,    3.33);
+    private ReceiptItem bacon    = new ReceiptItem("bacon",    12,   50.00);
+    private ReceiptItem toast    = new ReceiptItem("toast",    5,    1.00);
+    private ReceiptItem butter   = new ReceiptItem("butter",   1,    0.20);
+    private ReceiptItem sausage  = new ReceiptItem("sausage",  500,  0.01);
+    private ReceiptItem coffee   = new ReceiptItem("coffee",   10,   1.50);
+    private ReceiptItem orange_juice = new ReceiptItem("orange juice", 2,   2.00);
     
     @Test
     public void testReceipt() {
@@ -44,9 +44,13 @@ public class ReceiptTest {
         //test indexing
         receipt.setSelection(0);
         assertEquals(0, receipt.getSelection());
-        
+        assertEquals(eggs, receipt.getItem());
+
         receipt.setSelection(1);
         assertEquals(1, receipt.getSelection());
+        assertEquals(bacon, receipt.getItem());
+
+
 
         //this should still have 1 because that's the last element
         receipt.setSelection(2);

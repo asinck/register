@@ -6,10 +6,10 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class ItemInputTest {
-    ItemInput emptyItem = new ItemInput();
-    ItemInput nullItem  = new ItemInput(null);
-    ReceiptItem item    = new ReceiptItem("item", 1, 2.50);
-    ItemInput initdItem = new ItemInput(item);
+    private ItemInput emptyItem = new ItemInput();
+    private ItemInput nullItem  = new ItemInput(null);
+    private ReceiptItem item    = new ReceiptItem("item", 1, 2.50);
+    private ItemInput initdItem = new ItemInput(item);
     
     @Test
     public void testItemInput() {

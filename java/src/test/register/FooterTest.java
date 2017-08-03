@@ -5,15 +5,15 @@ package register;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-public class HeaderTest {
-	
-    String name = "Fred";	
-    Header header = new Header(null);
+public class FooterTest {
+
+    private Footer footer = new Footer(null);
     
     @Test
-    public void testHeader() {
-        header.setHeader(name);
-        assertEquals(name, header.getHeaderText());
+    public void testFooter() {
+        String name = "Fred";
+        footer.setStatus(name);
+        assertEquals(name, footer.getStatus());
         System.out.println("All tests passed.");
     }
 }
