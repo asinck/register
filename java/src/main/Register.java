@@ -507,7 +507,7 @@ class Receipt implements ListSelectionListener {
     /**
      * Updates an item in the list.
      *
-     * @param item      The item to update the current selection to
+     * @param newItem      The item to update the current selection to
      */
     public void updateItem(ReceiptItem newItem) {
         DefaultListModel<ReceiptItem> items = (DefaultListModel<ReceiptItem>) receipt.getModel();
@@ -1447,15 +1447,15 @@ class Customer {
     /**
      * Class constructor.
      *
-     * @param addressL1         Address line 1
-     * @param addressL2         Address line 2
-     * @param city              City
-     * @param state             State
-     * @param zip               Zip code
-     * @param email             Email address
-     * @param phoneNumber       Phone number
-     * @param member            member?
-     * @param subscribe         subscribe?
+     * @param _addressL1        Address line 1
+     * @param _addressL2        Address line 2
+     * @param _city             City
+     * @param _state            State
+     * @param _zip              Zip code
+     * @param _email            Email address
+     * @param _phoneNumber      Phone number
+     * @param _member           member?
+     * @param _subscribe        subscribe?
      */
     Customer(String _addressL1, String _addressL2, String _city,
              String _state, int _zip, String _email, int _phoneNumber,
