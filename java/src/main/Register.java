@@ -390,7 +390,7 @@ class Receipt implements ListSelectionListener {
     /**
      * The function buttons.
      */
-    public JButton printButton, emailButton, removeButton;
+    private JButton printButton, emailButton, removeButton;
 
     /**
      * Class constructor.
@@ -499,8 +499,7 @@ class Receipt implements ListSelectionListener {
      */
     public void addItem(ReceiptItem item) {
         receipt.clearSelection();
-        DefaultListModel<ReceiptItem> items = (DefaultListModel<ReceiptItem>) receipt.getModel();
-        items.addElement(item);
+        receiptList.addElement(item);
         total += item.getTotal();
     }
 
@@ -510,13 +509,12 @@ class Receipt implements ListSelectionListener {
      * @param newItem      The item to update the current selection to
      */
     public void updateItem(ReceiptItem newItem) {
-        DefaultListModel<ReceiptItem> items = (DefaultListModel<ReceiptItem>) receipt.getModel();
         int index = receipt.getSelectedIndex();
         if (index != -1) {
-            ReceiptItem item = (ReceiptItem) items.getElementAt(index);
+            ReceiptItem item = (ReceiptItem) receiptList.getElementAt(index);
             total -= item.getTotal();
             total += newItem.getTotal();
-            items.set(index, newItem);
+            receiptList.set(index, newItem);
         }
     }
 
@@ -527,12 +525,11 @@ class Receipt implements ListSelectionListener {
      */
     public void removeItem() {
         //A better implementation might be to strikethrough the item
-        DefaultListModel items = (DefaultListModel) receipt.getModel();
         int index = receipt.getSelectedIndex();
         if (index != -1) {
-            ReceiptItem item = (ReceiptItem) items.getElementAt(index);
+            ReceiptItem item = (ReceiptItem) receiptList.getElementAt(index);
             total -= item.getTotal();
-            items.remove(index);
+            receiptList.remove(index);
         }
     }
 
@@ -540,8 +537,7 @@ class Receipt implements ListSelectionListener {
      * Clear the entire receipt list.
      */
     public void clear() {
-        DefaultListModel items = (DefaultListModel) receipt.getModel();
-        items.removeAllElements();
+        receiptList.removeAllElements();
         total = 0.0;
     }
 
@@ -584,10 +580,9 @@ class Receipt implements ListSelectionListener {
      *         selected.
      */
     public ReceiptItem getItem() {
-        DefaultListModel items = (DefaultListModel) receipt.getModel();
         int index = receipt.getSelectedIndex();
         if (index != -1) {
-            return (ReceiptItem) items.get(index);
+            return (ReceiptItem) receiptList.get(index);
         }
         return null;
     }
