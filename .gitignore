@@ -9,3 +9,11 @@ build/
 
 #gradle hidden directory
 .gradle/
+
+#IntelliJ directories
+.idea/
+gradle/
+gradlew
+gradlew.bat
+register.iml
+
