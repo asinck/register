@@ -365,7 +365,6 @@ class Receipt implements ListSelectionListener {
      */
     private JList<ReceiptItem> receipt;
     private DefaultListModel<ReceiptItem> receiptList;
-    private JLabel infoBar;
     private double total;
 
     /**
@@ -453,7 +452,7 @@ class Receipt implements ListSelectionListener {
         container.add(removeButton, layout);
 
 
-        infoBar = new JLabel("Total: $" + String.format("%.2f", total));
+        JLabel infoBar = new JLabel("Total: $" + String.format("%.2f", total));
 
         layout.fill       = GridBagConstraints.HORIZONTAL;
         layout.anchor     = GridBagConstraints.PAGE_END;
@@ -492,7 +491,7 @@ class Receipt implements ListSelectionListener {
     public void updateItem(ReceiptItem newItem) {
         int index = receipt.getSelectedIndex();
         if (index != -1) {
-            ReceiptItem item = (ReceiptItem) receiptList.getElementAt(index);
+            ReceiptItem item = receiptList.getElementAt(index);
             total -= item.getTotal();
             total += newItem.getTotal();
             receiptList.set(index, newItem);
@@ -508,7 +507,7 @@ class Receipt implements ListSelectionListener {
         //A better implementation might be to strikethrough the item
         int index = receipt.getSelectedIndex();
         if (index != -1) {
-            ReceiptItem item = (ReceiptItem) receiptList.getElementAt(index);
+            ReceiptItem item = receiptList.getElementAt(index);
             total -= item.getTotal();
             receiptList.remove(index);
         }
@@ -563,7 +562,7 @@ class Receipt implements ListSelectionListener {
     public ReceiptItem getItem() {
         int index = receipt.getSelectedIndex();
         if (index != -1) {
-            return (ReceiptItem) receiptList.get(index);
+            return receiptList.get(index);
         }
         return null;
     }
@@ -643,47 +642,43 @@ class Display {
      * display.
      */
     private JPanel container;
-    private JPanel currentItemTab, manualInputTab, customerTab;
-    private JTabbedPane tabbedPane;
-    private CustomerInfo customerInfo;
-    private ItemInput itemInput, manualInput;
-    private JButton itemUpdateButton, itemAddButton;
-    
+
     /**
      * Class constructor.
      *
      * @param listener   The action listener.
      */
     public Display(ActionListener listener) {
+
         container = new JPanel();
-        tabbedPane = new JTabbedPane();
+        JTabbedPane tabbedPane = new JTabbedPane();
         container.add(tabbedPane);
 
         //The default tab - automatic input
-        currentItemTab = new JPanel();
+        JPanel currentItemTab = new JPanel();
         currentItemTab.setLayout(new BoxLayout(currentItemTab,
                                                BoxLayout.Y_AXIS));
-        itemInput = new ItemInput();
+        ItemInput itemInput = new ItemInput();
         currentItemTab.add(itemInput.getItemInput());
-        itemUpdateButton = new JButton("Update");
+        JButton itemUpdateButton = new JButton("Update");
         itemUpdateButton.addActionListener(listener);
         currentItemTab.add(itemUpdateButton);
         
         //the manual input tab
-        manualInputTab = new JPanel();
+        JPanel manualInputTab = new JPanel();
         manualInputTab.setLayout(new BoxLayout(manualInputTab,
                                                BoxLayout.Y_AXIS));
-        manualInput = new ItemInput();
+        ItemInput manualInput = new ItemInput();
         manualInputTab.add(manualInput.getItemInput());
-        itemAddButton = new JButton("Add");
+        JButton itemAddButton = new JButton("Add");
         itemAddButton.addActionListener(listener);
         manualInputTab.add(itemAddButton);
 
         //the customer info editor tab
-        customerTab = new JPanel();
+        JPanel customerTab = new JPanel();
         customerTab.setLayout(new BoxLayout(customerTab,
                                             BoxLayout.Y_AXIS));
-        customerInfo = new CustomerInfo(listener);
+        CustomerInfo customerInfo = new CustomerInfo(listener);
         customerTab.add(customerInfo.getCustomerInfo());
         
 
@@ -726,7 +721,7 @@ class Footer {
 
     //These buttons might be better placed somewhere else
 
-    public JButton cancelButton;
+    private JButton cancelButton;
 
     /**
      * Class constructor.
@@ -985,7 +980,7 @@ class ItemInput {
      * item input class.
      */
     private JPanel container;
-    private JLabel header, nameLabel, priceLabel, quantityLabel;
+//    private JLabel nameLabel, priceLabel, quantityLabel;
     private JTextField nameInput, priceInput, quantityInput;
     /**
      * The item that the GUI works with and returns.
@@ -1028,9 +1023,9 @@ class ItemInput {
           +---------+-------+
          */
 
-        nameLabel         = new JLabel("Name");
-        priceLabel        = new JLabel("Price ($)");
-        quantityLabel     = new JLabel("Quantity");
+        JLabel nameLabel         = new JLabel("Name");
+        JLabel priceLabel        = new JLabel("Price ($)");
+        JLabel quantityLabel     = new JLabel("Quantity");
         
         nameInput         = new JTextField(10);
         priceInput        = new JTextField(10);
@@ -1084,8 +1079,6 @@ class ItemInput {
         String parsedPrice    = priceInput.getText();
         String parsedQuantity = quantityInput.getText();
 
-        double price = 0.0;
-        int quantity = 0;
 
         if (parsedName.equals("") ||
             parsedPrice.equals("") ||
@@ -1094,8 +1087,8 @@ class ItemInput {
         }
         
         try {
-            price     = Double.parseDouble(parsedPrice.trim());
-            quantity  = Integer.parseInt(parsedQuantity.trim());
+            double price     = Double.parseDouble(parsedPrice.trim());
+            int quantity  = Integer.parseInt(parsedQuantity.trim());
             item      = new ReceiptItem(parsedName, quantity, price);
             return item;
         }
@@ -1149,8 +1142,8 @@ class CustomerInfo {
      * customer input class.
      */
     private JPanel container;
-    private JLabel header, addressLabel, phoneNumberLabel,
-        emailLabel, memberLabel, subscribeLabel;
+//    private JLabel header, addressLabel, phoneNumberLabel,
+//        emailLabel, memberLabel, subscribeLabel;
     public JButton subscribeYesButton, subscribeNoButton,
         memberYesButton, memberNoButton, addButton,
         updateButton, deleteButton;
@@ -1177,12 +1170,12 @@ class CustomerInfo {
         /*
           First, make all the components
          */
-        header             = new JLabel("Customer Info");
-        addressLabel       = new JLabel("Address");
-        phoneNumberLabel   = new JLabel("Phone Number");
-        emailLabel         = new JLabel("Email Address");
-        memberLabel        = new JLabel("Member?");
-        subscribeLabel     = new JLabel("Subscribe?");
+        JLabel header = new JLabel("Customer Info");
+        JLabel addressLabel       = new JLabel("Address");
+        JLabel phoneNumberLabel   = new JLabel("Phone Number");
+        JLabel emailLabel         = new JLabel("Email Address");
+        JLabel memberLabel        = new JLabel("Member?");
+        JLabel subscribeLabel     = new JLabel("Subscribe?");
 
         subscribeYesButton = new JButton("Yes");
         subscribeNoButton  = new JButton("No");
