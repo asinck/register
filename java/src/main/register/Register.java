@@ -195,29 +195,6 @@ class ApplicationMenu {
     private JMenuBar menuBar;
 
     /**
-     * The root of the file menu
-     */
-    private JMenu file;
-    private JMenuItem file_quit;
-
-    /**
-     * The root of the edit menu
-     */
-    private JMenu edit;
-    private JMenuItem edit_undo, edit_redo;
-
-    /**
-     * The root of the preferences menu
-     */
-    private JMenu preferences;
-    private JMenuItem preferences_options;
-
-    private JMenu preferences_colorTheme;
-    private JMenuItem preferences_colorTheme_light,
-        preferences_colorTheme_dark;
-
-
-    /**
      * Class constructor.
      *
      * @param listener   The action listener.
@@ -243,26 +220,30 @@ class ApplicationMenu {
         /* Indentation is a little odd on purpose. It mirrors the
          * structure of the comment above.
          */
-        file = new JMenu("File");
-          file_quit = new JMenuItem("Quit");
+
+        //The root of the file menu
+        JMenu file = new JMenu("File");
+        JMenuItem file_quit = new JMenuItem("Quit");
           file.add(file_quit);
 
 
-        edit = new JMenu("Edit");
-          edit_undo = new JMenuItem("Undo");
+        //The root of the edit menu
+        JMenu edit = new JMenu("Edit");
+          JMenuItem edit_undo = new JMenuItem("Undo");
           edit.add(edit_undo);
-          edit_redo = new JMenuItem("Redo");
+          JMenuItem edit_redo = new JMenuItem("Redo");
           edit.add(edit_redo);
 
-        preferences = new JMenu("Preferences");
-          preferences_colorTheme = new JMenu("Color Theme");
-          preferences_colorTheme_light = new JMenuItem("Light");
+        //The root of the preferences menu
+        JMenu preferences = new JMenu("Preferences");
+        JMenu preferences_colorTheme = new JMenu("Color Theme");
+          JMenuItem preferences_colorTheme_light = new JMenuItem("Light");
           preferences_colorTheme.add(preferences_colorTheme_light);
-          preferences_colorTheme_dark = new JMenuItem("Dark");
+          JMenuItem preferences_colorTheme_dark = new JMenuItem("Dark");
           preferences_colorTheme.add(preferences_colorTheme_dark);
           preferences.add(preferences_colorTheme);
           preferences.addSeparator();
-          preferences_options = new JMenuItem("Options");
+          JMenuItem preferences_options = new JMenuItem("Options");
           preferences.add(preferences_options);
 
         menuBar.add(file);
