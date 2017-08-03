@@ -13,9 +13,9 @@ import javax.swing.event.*;
 import javax.swing.border.*;
 
 
-/**********************************************************************
- ** View
- **********************************************************************/
+/*********************************************************************
+ View
+ */
 
 /**
  * This class runs the program. It instantiates a single instance of
@@ -45,10 +45,9 @@ public class Register {
 }
 
 
-
-/**********************************************************************
- ** View / Controller
- **********************************************************************/
+/*********************************************************************
+ View / Controller
+ */
 
 /**
  * The Graphical interface for the program. This class defines the
@@ -384,8 +383,8 @@ class Receipt implements ListSelectionListener {
         container.setLayout(new GridBagLayout());
         GridBagConstraints layout = new GridBagConstraints();
 
-        receiptList = new DefaultListModel<ReceiptItem>();
-        receipt = new JList<ReceiptItem>(receiptList);
+        receiptList = new DefaultListModel<>();
+        receipt = new JList<>(receiptList);
 
         // This will eventually have custom cells.
         // receipt.setCellRenderer(new ReceiptItemRenderer());
@@ -1136,6 +1135,7 @@ class ItemInput {
  * @author Adam Sinck
  * @version 0.0
  */
+@SuppressWarnings("ALL")
 class CustomerInfo {
     /**
      * This is the container for the entire GUI representation of the
@@ -1144,9 +1144,12 @@ class CustomerInfo {
     private JPanel container;
 //    private JLabel header, addressLabel, phoneNumberLabel,
 //        emailLabel, memberLabel, subscribeLabel;
-    public JButton subscribeYesButton, subscribeNoButton,
-        memberYesButton, memberNoButton, addButton,
-        updateButton, deleteButton;
+    private JButton subscribeYesButton, subscribeNoButton, memberYesButton, memberNoButton, addButton, updateButton, deleteButton;
+//    private JButton memberYesButton;
+//    private JButton memberNoButton;
+//    private JButton addButton;
+//    private JButton updateButton;
+//    private JButton deleteButton;
     //TODO: make "state" a dropdown
     private JTextField addressL1Field, addressL2Field, cityField,
         stateField, emailField;
@@ -1354,9 +1357,9 @@ class CustomerInfo {
 }
 
 
-/**********************************************************************
- ** Model
- **********************************************************************/
+/*********************************************************************
+ Model
+ */
 
 
 /**
@@ -1381,7 +1384,7 @@ class Model {
      * found and null otherwise.
      *
      * @param code      The item code to look up
-     * @return the item correstponding to the given item code, or null
+     * @return the item corresponding to the given item code, or null
      *         if not found
      */
     public ReceiptItem itemLookup(int code) {
@@ -1393,7 +1396,7 @@ class Model {
      * the account if found and null otherwise.
      *
      * @param number    The number to look up
-     * @return the customer correstponding to the given number, or
+     * @return the customer corresponding to the given number, or
      *         null if not found
      */
     public ReceiptItem customerLookup(int number) {
