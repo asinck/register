@@ -30,7 +30,7 @@ public class CustomerTest {
         assertEquals(state, customer.getState());
         assertEquals(zip, customer.getZip());
         assertEquals(email, customer.getEmail());
-        assertEquals(phoneNumber, customer.getPhonenumber());
+        assertEquals(phoneNumber, customer.getPhoneNumber());
         assertEquals(member, customer.getMember());
         assertEquals(subscribe, customer.getSubscribe());
         
@@ -62,8 +62,8 @@ public class CustomerTest {
         customer.setEmail(email);
         assertEquals(email, customer.getEmail());
         
-        customer.setPhonenumber(phoneNumber);
-        assertEquals(phoneNumber, customer.getPhonenumber());
+        customer.setPhoneNumber(phoneNumber);
+        assertEquals(phoneNumber, customer.getPhoneNumber());
         
         customer.setMember(member);
         assertEquals(member, customer.getMember());

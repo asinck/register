@@ -1630,7 +1630,7 @@ class Customer {
      *
      * @return phoneNumber
      */
-    public int getPhonenumber() {
+    public int getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -1639,7 +1639,7 @@ class Customer {
      *
      * @param newPhoneNumber, the new phoneNumber
      */
-    public void setPhonenumber(int newPhoneNumber) {
+    public void setPhoneNumber(int newPhoneNumber) {
         phoneNumber = newPhoneNumber;
     }
     /**
