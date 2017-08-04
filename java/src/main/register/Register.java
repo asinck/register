@@ -170,6 +170,13 @@ class RegisterGUI extends JFrame implements ActionListener {
         else if (event.getSource() == footer.getCancelButton()) {
             receipt.clear();
         }
+        else if (event.getSource() == display.getItemAddButton()) {
+            ReceiptItem item = display.getItem((JButton) event.getSource());
+            receipt.addItem(item);
+        }
+        else if (event.getSource() == display.getItemUpdateButton()) {
+
+        }
         else {
             footer.setStatus("Received command: " + command);
         }
@@ -641,7 +648,8 @@ class Display {
      * display.
      */
     private JPanel container;
-
+    private JButton itemUpdateButton, itemAddButton;
+    private ItemInput itemInput, manualInput;
     /**
      * Class constructor.
      *
@@ -657,9 +665,9 @@ class Display {
         JPanel currentItemTab = new JPanel();
         currentItemTab.setLayout(new BoxLayout(currentItemTab,
                                                BoxLayout.Y_AXIS));
-        ItemInput itemInput = new ItemInput();
+        itemInput = new ItemInput();
         currentItemTab.add(itemInput.getItemInput());
-        JButton itemUpdateButton = new JButton("Update");
+        itemUpdateButton = new JButton("Update");
         itemUpdateButton.addActionListener(listener);
         currentItemTab.add(itemUpdateButton);
         
@@ -667,9 +675,9 @@ class Display {
         JPanel manualInputTab = new JPanel();
         manualInputTab.setLayout(new BoxLayout(manualInputTab,
                                                BoxLayout.Y_AXIS));
-        ItemInput manualInput = new ItemInput();
+        manualInput = new ItemInput();
         manualInputTab.add(manualInput.getItemInput());
-        JButton itemAddButton = new JButton("Add");
+        itemAddButton = new JButton("Add");
         itemAddButton.addActionListener(listener);
         manualInputTab.add(itemAddButton);
 
@@ -680,11 +688,37 @@ class Display {
         CustomerInfo customerInfo = new CustomerInfo(listener);
         customerTab.add(customerInfo.getCustomerInfo());
         
-
-        
         tabbedPane.addTab("Current item", currentItemTab);
         tabbedPane.addTab("Manual input", manualInputTab);
         tabbedPane.addTab("Customer info", customerTab);
+    }
+
+    /**
+     * The getter function for the item update button.
+     *
+     * @return The update button
+     */
+    public JButton getItemAddButton() {
+        return itemAddButton;
+    }
+
+    /**
+     * The getter function for the item update button.
+     *
+     * @return The update button
+     */
+    public JButton getItemUpdateButton() {
+        return itemUpdateButton;
+    }
+
+    public ReceiptItem getItem(JButton source) {
+        if (source == itemAddButton) {
+            return manualInput.getItem();
+        }
+        else if (source == itemUpdateButton) {
+            return itemInput.getItem();
+        }
+        return null;
     }
 
     /**
