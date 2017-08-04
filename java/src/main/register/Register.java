@@ -379,6 +379,11 @@ class Receipt implements ListSelectionListener {
     private JButton printButton, emailButton, removeButton;
 
     /**
+     * The information bar. Mostly for displaying the total.
+     */
+    JLabel infoBar;
+
+    /**
      * Class constructor.
      *
      * @param listener   The action listener.
@@ -458,7 +463,8 @@ class Receipt implements ListSelectionListener {
         container.add(removeButton, layout);
 
 
-        JLabel infoBar = new JLabel("Total: $" + String.format("%.2f", total));
+        infoBar = new JLabel();
+        updateInfoBar();
 
         layout.fill       = GridBagConstraints.HORIZONTAL;
         layout.anchor     = GridBagConstraints.PAGE_END;
@@ -487,6 +493,7 @@ class Receipt implements ListSelectionListener {
         receipt.clearSelection();
         receiptList.addElement(item);
         total += item.getTotal();
+        updateInfoBar();
     }
 
     /**
@@ -502,6 +509,7 @@ class Receipt implements ListSelectionListener {
             total += newItem.getTotal();
             receiptList.set(index, newItem);
         }
+        updateInfoBar();
     }
 
     /**
@@ -517,6 +525,7 @@ class Receipt implements ListSelectionListener {
             total -= item.getTotal();
             receiptList.remove(index);
         }
+        updateInfoBar();
     }
 
     /**
@@ -525,6 +534,7 @@ class Receipt implements ListSelectionListener {
     public void clear() {
         receiptList.removeAllElements();
         total = 0.0;
+        updateInfoBar();
     }
 
     /**
@@ -573,6 +583,12 @@ class Receipt implements ListSelectionListener {
         return null;
     }
 
+    /**
+     * This updates the information bar with the current total.
+     */
+    private void updateInfoBar() {
+        infoBar.setText("Total: $" + String.format("%.2f", total));
+    }
     /**
      * The getter function for the print button. Useful for
      * identifying what button was pressed.
