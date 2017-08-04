@@ -39,8 +39,7 @@ public class Register {
     * @param args  Any input arguments.
     */
     public static void main(String[] args) {
-        RegisterGUI display = new RegisterGUI();
-        // Register register = new Register();
+        new RegisterGUI();
     }
 }
 
@@ -71,7 +70,7 @@ class RegisterGUI extends JFrame implements ActionListener {
      *
      * This arranges all the components of the GUI inside it.
      */
-    public RegisterGUI() {
+    RegisterGUI() {
         //this is the top level window.
         myWindow = new JFrame();
         myWindow.setTitle("Register");
@@ -174,9 +173,6 @@ class RegisterGUI extends JFrame implements ActionListener {
             ReceiptItem item = display.getItem((JButton) event.getSource());
             receipt.addItem(item);
         }
-        else if (event.getSource() == display.getItemUpdateButton()) {
-
-        }
         else {
             footer.setStatus("Received command: " + command);
         }
@@ -205,7 +201,7 @@ class ApplicationMenu {
      *
      * @param listener   The action listener.
      */
-    public ApplicationMenu(ActionListener listener) {
+    ApplicationMenu(ActionListener listener) {
         /*
           The following is a tree representation of the menu.
 
@@ -263,7 +259,7 @@ class ApplicationMenu {
      *
      * @return The menu bar containing the entire GUI of this class.
      */
-    public JMenuBar getMenuBar() {
+    JMenuBar getMenuBar() {
         return menuBar;
     }
 
@@ -298,7 +294,7 @@ class Header {
      *
      * @param listener   The action listener.
      */
-    public Header(ActionListener listener) {
+    Header(ActionListener listener) {
         this(listener, "");
     }
 
@@ -311,7 +307,7 @@ class Header {
      * @param name       The name to be displayed. If it is empty, it
      *                   will omit it.
      */
-    public Header(ActionListener listener, String name) {
+    Header(ActionListener listener, String name) {
         container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
         if (name.equals("")) {
@@ -328,7 +324,7 @@ class Header {
      *
      * @return The container with the entire GUI of this class.
      */
-    public JPanel getHeader() {
+    JPanel getHeader() {
         return container;
     }
 
@@ -338,7 +334,7 @@ class Header {
      *
      * @return The header text.
      */
-    public String getHeaderText() {
+    String getHeaderText() {
         return greeting.getText();
     }
     /**
@@ -347,7 +343,7 @@ class Header {
      * @param newContents   The new message to be displayed in the
      *                      header.
      */
-    public void setHeader(String newContents) {
+    void setHeader(String newContents) {
         greeting.setText(newContents);
     }
 }
@@ -381,14 +377,14 @@ class Receipt implements ListSelectionListener {
     /**
      * The information bar. Mostly for displaying the total.
      */
-    JLabel infoBar;
+    private JLabel infoBar;
 
     /**
      * Class constructor.
      *
      * @param listener   The action listener.
      */
-    public Receipt(ActionListener listener) {
+    Receipt(ActionListener listener) {
         total = 0.0;
         container = new JPanel();
         //TODO: change the layout to something better.
@@ -479,7 +475,7 @@ class Receipt implements ListSelectionListener {
      *
      * @return The container containing the entire GUI of this class.
      */
-    public JPanel getReceiptPanel() {
+    JPanel getReceiptPanel() {
         return container;
     }
 
@@ -489,7 +485,7 @@ class Receipt implements ListSelectionListener {
      *
      * @param item      The item to be added to the list
      */
-    public void addItem(ReceiptItem item) {
+    void addItem(ReceiptItem item) {
         receipt.clearSelection();
         receiptList.addElement(item);
         total += item.getTotal();
@@ -501,7 +497,7 @@ class Receipt implements ListSelectionListener {
      *
      * @param newItem      The item to update the current selection to
      */
-    public void updateItem(ReceiptItem newItem) {
+    void updateItem(ReceiptItem newItem) {
         int index = receipt.getSelectedIndex();
         if (index != -1) {
             ReceiptItem item = receiptList.getElementAt(index);
@@ -517,7 +513,7 @@ class Receipt implements ListSelectionListener {
      *
      * No parameters; this checks what item is selected.
      */
-    public void removeItem() {
+    void removeItem() {
         //A better implementation might be to strikethrough the item
         int index = receipt.getSelectedIndex();
         if (index != -1) {
@@ -531,7 +527,7 @@ class Receipt implements ListSelectionListener {
     /**
      * Clear the entire receipt list.
      */
-    public void clear() {
+    void clear() {
         receiptList.removeAllElements();
         total = 0.0;
         updateInfoBar();
@@ -542,7 +538,7 @@ class Receipt implements ListSelectionListener {
      *
      * @param index     the index to set the selection to
      */
-    public void setSelection(int index) {
+    void setSelection(int index) {
         receipt.setSelectedIndex(index);
     }
 
@@ -553,7 +549,7 @@ class Receipt implements ListSelectionListener {
      * @return the index of the currently selected item in the receipt
      * list
      */
-    public int getSelection() {
+    int getSelection() {
         return receipt.getSelectedIndex();
     }
 
@@ -564,7 +560,7 @@ class Receipt implements ListSelectionListener {
      *
      * @return The subtotal
      */
-    public double getTotal() {
+    double getTotal() {
         return total;
     }
 
@@ -575,7 +571,7 @@ class Receipt implements ListSelectionListener {
      * @return The currently selected item, or null if no item is
      *         selected.
      */
-    public ReceiptItem getItem() {
+    ReceiptItem getItem() {
         int index = receipt.getSelectedIndex();
         if (index != -1) {
             return receiptList.get(index);
@@ -595,7 +591,7 @@ class Receipt implements ListSelectionListener {
      *
      * @return The print button.
      */
-    public JButton getPrintButton() {
+    JButton getPrintButton() {
         return printButton;
     }
 
@@ -605,7 +601,7 @@ class Receipt implements ListSelectionListener {
      *
      * @return The email button.
      */
-    public JButton getEmailButton() {
+    JButton getEmailButton() {
         return emailButton;
     }
 
@@ -615,7 +611,7 @@ class Receipt implements ListSelectionListener {
      *
      * @return The remove button.
      */
-    public JButton getRemoveButton() {
+    JButton getRemoveButton() {
         return removeButton;
     }
 
@@ -671,7 +667,7 @@ class Display {
      *
      * @param listener   The action listener.
      */
-    public Display(ActionListener listener) {
+    Display(ActionListener listener) {
 
         container = new JPanel();
         JTabbedPane tabbedPane = new JTabbedPane();
@@ -714,7 +710,7 @@ class Display {
      *
      * @return The update button
      */
-    public JButton getItemAddButton() {
+    JButton getItemAddButton() {
         return itemAddButton;
     }
 
@@ -727,7 +723,7 @@ class Display {
         return itemUpdateButton;
     }
 
-    public ReceiptItem getItem(JButton source) {
+    ReceiptItem getItem(JButton source) {
         if (source == itemAddButton) {
             return manualInput.getItem();
         }
@@ -742,7 +738,7 @@ class Display {
      *
      * @return The container containing the entire GUI of this class.
      */
-    public JPanel getDisplay() {
+    JPanel getDisplay() {
         return container;
     }
 }
@@ -780,7 +776,7 @@ class Footer {
      *
      * @param listener   The action listener.
      */
-    public Footer(ActionListener listener) {
+    Footer(ActionListener listener) {
         this(listener, "Ready");
     }
 
@@ -791,7 +787,7 @@ class Footer {
      * @param listener   The action listener.
      * @param message    The status message to be displayed.
      */
-    public Footer(ActionListener listener, String message) {
+    Footer(ActionListener listener, String message) {
         container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
 
@@ -810,7 +806,7 @@ class Footer {
      *
      * @param newStatus   The new status message.
      */
-    public void setStatus(String newStatus) {
+    void setStatus(String newStatus) {
         status.setText(newStatus);
     }
 
@@ -819,7 +815,7 @@ class Footer {
      *
      * @return The status message.
      */
-    public String getStatus() {
+    String getStatus() {
         return status.getText();
     }
 
@@ -830,7 +826,7 @@ class Footer {
      *
      * @return The cancel button.
      */
-    public JButton getCancelButton() {
+    JButton getCancelButton() {
         return cancelButton;
     }
 
@@ -839,7 +835,7 @@ class Footer {
      *
      * @return The container containing the entire GUI of this class.
      */
-    public JPanel getFooter() {
+    JPanel getFooter() {
         return container;
     }
 }
@@ -895,7 +891,7 @@ class ReceiptItem {
      * @param _count    The number of the item being purchased.
      * @param _price    The price of this item.
      */
-    public ReceiptItem(String _name, int _count, double _price) {
+    ReceiptItem(String _name, int _count, double _price) {
         name          = _name;
         count         = _count;
         price         = _price;
@@ -907,7 +903,7 @@ class ReceiptItem {
      *
      * @return The item name.
      */
-    public String getName() {
+    String getName() {
         return name;
     }
 
@@ -916,7 +912,7 @@ class ReceiptItem {
      *
      * @param newName   The new item name.
      */
-    public void setName(String newName) {
+    void setName(String newName) {
         name = newName;
     }
 
@@ -925,7 +921,7 @@ class ReceiptItem {
      *
      * @return The count.
      */
-    public int getCount() {
+    int getCount() {
         return count;
     }
 
@@ -934,7 +930,7 @@ class ReceiptItem {
      *
      * @param newCount   The new count.
      */
-    public void setCount(int newCount) {
+    void setCount(int newCount) {
         count = newCount;
     }
 
@@ -943,7 +939,7 @@ class ReceiptItem {
      *
      * @return The price per item.
      */
-    public double getPrice() {
+    double getPrice() {
         return price;
     }
 
@@ -952,7 +948,7 @@ class ReceiptItem {
      *
      * @param newPrice   The new price per item.
      */
-    public void setPrice(double newPrice) {
+    void setPrice(double newPrice) {
         price = newPrice;
         priceOverride = true;
     }
@@ -963,7 +959,7 @@ class ReceiptItem {
      *
      * @return the total cost for this item (price * count)
      */
-    public double getTotal() {
+    double getTotal() {
         return price * count;
     }
 
@@ -1043,7 +1039,7 @@ class ItemInput {
      * Takes no arguments, calls the other constructor with a null
      * item as initialization.
      */
-    public ItemInput() {
+    ItemInput() {
         this(null);
     }
 
@@ -1054,7 +1050,7 @@ class ItemInput {
      *
      * @param _item     The item to initialize with.
      */
-    public ItemInput(ReceiptItem _item) {
+    ItemInput(ReceiptItem _item) {
         item = _item;
 
         container = new JPanel();
@@ -1123,7 +1119,7 @@ class ItemInput {
      *
      * @return The receipt item.
      */
-    public ReceiptItem getItem() {
+    ReceiptItem getItem() {
         String parsedName     = nameInput.getText();
         String parsedPrice    = priceInput.getText();
         String parsedQuantity = quantityInput.getText();
@@ -1153,7 +1149,7 @@ class ItemInput {
      *
      * @param newItem   The new item
      */
-    public void setItem(ReceiptItem newItem) {
+    void setItem(ReceiptItem newItem) {
         if (newItem != null) {
             nameInput.setText(newItem.getName());
             priceInput.setText("" + newItem.getPrice());
@@ -1162,13 +1158,12 @@ class ItemInput {
         item = newItem;
     }
 
-
     /**
      * The getter function for the containing GUI of this class.
      *
      * @return The container containing the entire GUI of this class.
      */
-    public JPanel getItemInput() {
+    JPanel getItemInput() {
         return container;
     }
 
@@ -1185,7 +1180,7 @@ class ItemInput {
  * @author Adam Sinck
  * @version 0.0
  */
-@SuppressWarnings("ALL")
+
 class CustomerInfo {
     /**
      * This is the container for the entire GUI representation of the
@@ -1210,7 +1205,7 @@ class CustomerInfo {
      *
      * @param listener   The action listener.
      */
-    public CustomerInfo(ActionListener listener) {
+    CustomerInfo(ActionListener listener) {
         container = new JPanel();
         container.setLayout(new GridBagLayout());
         GridBagConstraints layout;
@@ -1366,7 +1361,7 @@ class CustomerInfo {
      *
      * @return The container containing the entire GUI of this class.
      */
-    public JPanel getCustomerInfo() {
+    JPanel getCustomerInfo() {
         return container;
     }
 
@@ -1425,7 +1420,7 @@ class Model {
     /**
      * Class constructor.
      */
-    public Model() {
+    Model() {
 
     }
 
@@ -1437,7 +1432,7 @@ class Model {
      * @return the item corresponding to the given item code, or null
      *         if not found
      */
-    public ReceiptItem itemLookup(int code) {
+    ReceiptItem itemLookup(int code) {
         return null;
     }
 
@@ -1449,7 +1444,7 @@ class Model {
      * @return the customer corresponding to the given number, or
      *         null if not found
      */
-    public ReceiptItem customerLookup(int number) {
+    ReceiptItem customerLookup(int number) {
         return null;
     }
 }
@@ -1528,7 +1523,7 @@ class Customer {
      *
      * @return addressL1
      */
-    public String getAddressL1() {
+    String getAddressL1() {
         return addressL1;
     }
 
@@ -1537,7 +1532,7 @@ class Customer {
      *
      * @param newAddressL1, the new addressL1
      */
-    public void setAddressL1(String newAddressL1) {
+    void setAddressL1(String newAddressL1) {
         addressL1 = newAddressL1;
     }
     /**
@@ -1545,7 +1540,7 @@ class Customer {
      *
      * @return addressL2
      */
-    public String getAddressL2() {
+    String getAddressL2() {
         return addressL2;
     }
 
@@ -1554,7 +1549,7 @@ class Customer {
      *
      * @param newAddressL2, the new addressL2
      */
-    public void setAddressL2(String newAddressL2) {
+    void setAddressL2(String newAddressL2) {
         addressL2 = newAddressL2;
     }
     /**
@@ -1562,7 +1557,7 @@ class Customer {
      *
      * @return city
      */
-    public String getCity() {
+    String getCity() {
         return city;
     }
 
@@ -1571,7 +1566,7 @@ class Customer {
      *
      * @param newCity, the new city
      */
-    public void setCity(String newCity) {
+    void setCity(String newCity) {
         city = newCity;
     }
     /**
@@ -1579,7 +1574,7 @@ class Customer {
      *
      * @return state
      */
-    public String getState() {
+    String getState() {
         return state;
     }
 
@@ -1588,7 +1583,7 @@ class Customer {
      *
      * @param newState, the new state
      */
-    public void setState(String newState) {
+    void setState(String newState) {
         state = newState;
     }
     /**
@@ -1596,7 +1591,7 @@ class Customer {
      *
      * @return zip
      */
-    public int getZip() {
+    int getZip() {
         return zip;
     }
 
@@ -1605,7 +1600,7 @@ class Customer {
      *
      * @param newZip, the new zip
      */
-    public void setZip(int newZip) {
+    void setZip(int newZip) {
         zip = newZip;
     }
     /**
@@ -1613,7 +1608,7 @@ class Customer {
      *
      * @return email
      */
-    public String getEmail() {
+    String getEmail() {
         return email;
     }
 
@@ -1622,7 +1617,7 @@ class Customer {
      *
      * @param newEmail, the new email
      */
-    public void setEmail(String newEmail) {
+    void setEmail(String newEmail) {
         email = newEmail;
     }
     /**
@@ -1630,7 +1625,7 @@ class Customer {
      *
      * @return phoneNumber
      */
-    public int getPhoneNumber() {
+    int getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -1639,7 +1634,7 @@ class Customer {
      *
      * @param newPhoneNumber, the new phoneNumber
      */
-    public void setPhoneNumber(int newPhoneNumber) {
+    void setPhoneNumber(int newPhoneNumber) {
         phoneNumber = newPhoneNumber;
     }
     /**
@@ -1647,7 +1642,7 @@ class Customer {
      *
      * @return member
      */
-    public boolean getMember() {
+    boolean getMember() {
         return member;
     }
 
@@ -1656,7 +1651,7 @@ class Customer {
      *
      * @param newMember, the new member
      */
-    public void setMember(boolean newMember) {
+    void setMember(boolean newMember) {
         member = newMember;
     }
     /**
@@ -1664,7 +1659,7 @@ class Customer {
      *
      * @return subscribe
      */
-    public boolean getSubscribe() {
+    boolean getSubscribe() {
         return subscribe;
     }
 
@@ -1673,8 +1668,7 @@ class Customer {
      *
      * @param newSubscribe, the new subscribe
      */
-    public void setSubscribe(boolean newSubscribe) {
+    void setSubscribe(boolean newSubscribe) {
         subscribe = newSubscribe;
     }
-
 }
