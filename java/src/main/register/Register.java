@@ -13,8 +13,8 @@ import javax.swing.event.*;
 import javax.swing.border.*;
 
 
-/*********************************************************************
- View
+/* *******************************************************************
+ * View
  */
 
 /**
@@ -45,8 +45,8 @@ public class Register {
 }
 
 
-/*********************************************************************
- View / Controller
+/* ********************************************************************
+ * View / Controller
  */
 
 /**
@@ -392,7 +392,7 @@ class Receipt implements ListSelectionListener {
         receipt.setLayoutOrientation(JList.VERTICAL);
         receipt.addListSelectionListener(this);
         receipt.setVisibleRowCount(5);
-        JScrollPane listScrollPane = new JScrollPane(receipt);
+//        JScrollPane listScrollPane = new JScrollPane(receipt);
 
         // //This is an example item. This should be removed once any
         // //implementation is in place. Also, this should use this
@@ -1357,8 +1357,8 @@ class CustomerInfo {
 }
 
 
-/*********************************************************************
- Model
+/* ********************************************************************
+ * Model
  */
 
 
