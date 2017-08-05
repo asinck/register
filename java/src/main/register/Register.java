@@ -172,7 +172,7 @@ class RegisterGUI extends JFrame implements ActionListener {
         else if (event.getSource() == display.getItemAddButton()) {
             ReceiptItem item = display.getItem();
             receipt.addItem(item);
-            display.clearItemInput();
+            display.clear();
         }
         else {
             footer.setStatus("Received command: " + command);
@@ -677,11 +677,13 @@ class Display {
 
         container = new JPanel();
         tabbedPane = new JTabbedPane();
-//        tabbedPane.addChangeListener(new ChangeListener() {
-//            public void stateChanged(ChangeEvent e) {
+        //every time a tab is changed, clear the item input fields
+        tabbedPane.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                clear();
 //                System.out.println("Tab: " + tabbedPane.getSelectedIndex());
-//            }
-//        });
+            }
+        });
 
         container.add(tabbedPane);
 
@@ -755,7 +757,7 @@ class Display {
     /**
      * Clears the item input fields.
      */
-    void clearItemInput() {
+    void clear() {
         int index = tabbedPane.getSelectedIndex();
         if (index == AUTOMATIC_INPUT_TAB) {
             automaticInput.clear();
