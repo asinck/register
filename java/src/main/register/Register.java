@@ -1488,36 +1488,6 @@ class Customer {
         subscribe    = _subscribe;
     }
 
-
-    //python script ftw
-    // addressL1
-    // addressL2
-    // city
-    // state
-    // zip
-    // email
-    // phoneNumber
-    // member
-    // subscribe;
-
-    // /**
-    //  * The getter function for %s
-    //  *
-    //  * @return %s
-    //  */
-    // public String get%s() {
-    //     return %s;
-    // }
-
-    // /**
-    //  * The setter function for %s
-    //  *
-    //  * @param new%s, the new %s
-    //  */
-    // public String set%s(String new%s) {
-    //     %s = new%s;
-    // }
-
     /**
      * The getter function for addressL1
      *
