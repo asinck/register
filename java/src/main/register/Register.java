@@ -170,8 +170,9 @@ class RegisterGUI extends JFrame implements ActionListener {
             receipt.clear();
         }
         else if (event.getSource() == display.getItemAddButton()) {
-            ReceiptItem item = display.getItem((JButton) event.getSource());
+            ReceiptItem item = display.getItem();
             receipt.addItem(item);
+            display.clearItemInput();
         }
         else {
             footer.setStatus("Received command: " + command);
@@ -661,7 +662,12 @@ class Display {
      */
     private JPanel container;
     private JButton itemUpdateButton, itemAddButton;
-    private ItemInput itemInput, manualInput;
+    private ItemInput automaticInput, manualInput;
+    private JTabbedPane tabbedPane;
+    private final int AUTOMATIC_INPUT_TAB = 0;
+    private final int MANUAL_INPUT_TAB = 1;
+    private final int CUSTOMER_TAB = 2;
+
     /**
      * Class constructor.
      *
@@ -670,15 +676,21 @@ class Display {
     Display(ActionListener listener) {
 
         container = new JPanel();
-        JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane = new JTabbedPane();
+//        tabbedPane.addChangeListener(new ChangeListener() {
+//            public void stateChanged(ChangeEvent e) {
+//                System.out.println("Tab: " + tabbedPane.getSelectedIndex());
+//            }
+//        });
+
         container.add(tabbedPane);
 
         //The default tab - automatic input
         JPanel currentItemTab = new JPanel();
         currentItemTab.setLayout(new BoxLayout(currentItemTab,
                                                BoxLayout.Y_AXIS));
-        itemInput = new ItemInput();
-        currentItemTab.add(itemInput.getItemInput());
+        automaticInput = new ItemInput();
+        currentItemTab.add(automaticInput.getItemInput());
         itemUpdateButton = new JButton("Update");
         itemUpdateButton.addActionListener(listener);
         currentItemTab.add(itemUpdateButton);
@@ -723,16 +735,35 @@ class Display {
         return itemUpdateButton;
     }
 
-    ReceiptItem getItem(JButton source) {
-        if (source == itemAddButton) {
-            return manualInput.getItem();
+    /**
+     * Gets the item from the item input fields.
+     *
+     * @return the item from the item input fields, or null
+     *         if it's not in an item input field.
+     */
+    ReceiptItem getItem() {
+        int index = tabbedPane.getSelectedIndex();
+        if (index == AUTOMATIC_INPUT_TAB) {
+            return automaticInput.getItem();
         }
-        else if (source == itemUpdateButton) {
-            return itemInput.getItem();
+        else if (index == MANUAL_INPUT_TAB) {
+            return manualInput.getItem();
         }
         return null;
     }
 
+    /**
+     * Clears the item input fields.
+     */
+    void clearItemInput() {
+        int index = tabbedPane.getSelectedIndex();
+        if (index == AUTOMATIC_INPUT_TAB) {
+            automaticInput.clear();
+        }
+        else if (index == MANUAL_INPUT_TAB) {
+            manualInput.clear();
+        }
+    }
     /**
      * The getter function for the containing GUI of this class.
      *
@@ -1124,7 +1155,7 @@ class ItemInput {
         String parsedPrice    = priceInput.getText();
         String parsedQuantity = quantityInput.getText();
 
-
+        //if any of the fields are empty, then stop
         if (parsedName.equals("") ||
             parsedPrice.equals("") ||
             parsedQuantity.equals("")) {
@@ -1132,9 +1163,9 @@ class ItemInput {
         }
         
         try {
-            double price     = Double.parseDouble(parsedPrice.trim());
+            double price  = Double.parseDouble(parsedPrice.trim());
             int quantity  = Integer.parseInt(parsedQuantity.trim());
-            item      = new ReceiptItem(parsedName, quantity, price);
+            item          = new ReceiptItem(parsedName, quantity, price);
             return item;
         }
         catch (NumberFormatException e) {
@@ -1159,6 +1190,15 @@ class ItemInput {
     }
 
     /**
+     * Clears the input fields.
+     */
+    void clear() {
+        nameInput.setText("");
+        priceInput.setText("");
+        quantityInput.setText("");
+    }
+
+    /**
      * The getter function for the containing GUI of this class.
      *
      * @return The container containing the entire GUI of this class.
@@ -1166,7 +1206,6 @@ class ItemInput {
     JPanel getItemInput() {
         return container;
     }
-
 }
 
 

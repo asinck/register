@@ -23,5 +23,10 @@ public class ItemInputTest {
         nullItem.setItem(item);
         assertEquals(nullItem.getItem(), item);
 
+        //make sure that the clear function works
+        nullItem.clear();
+        assertEquals(null, nullItem.getItem());
+        initdItem.clear();
+        assertEquals(null, initdItem.getItem());
     }
 }
