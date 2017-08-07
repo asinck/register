@@ -8,6 +8,8 @@ package register;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.border.*;
@@ -152,17 +154,11 @@ class RegisterGUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent event) {
         //command gets the text of the button
         String command = event.getActionCommand();
-        // System.out.println(event.getSource());
-        // System.out.println(footer.printButton);
-        // System.out.println(event.getSource() == footer.printButton);
-        //The following line would be much better
-        // if(evt.getSource()==jButtonClear) {
+
         if (event.getSource() == receipt.getPrintButton()) {
-            footer.setStatus("Sending to printer...");
+            receipt.print();
         }
-        else if (event.getSource() == receipt.getEmailButton()) {
-            footer.setStatus("Emailing virtual receipt...");
-        }
+
         else if (event.getSource() == receipt.getRemoveButton()) {
             receipt.removeItem();
         }
@@ -617,8 +613,20 @@ class Receipt implements ListSelectionListener {
     }
 
     /**
+     * Prints the receipt.
+     */
+    void print() {
+        ArrayList<ReceiptItem> ri = new ArrayList<>();
+        for (int i = 0; i < receiptList.getSize(); i++) {
+            ri.add(receiptList.get(i));
+        }
+        Printer printer = new Printer(ri.toArray(new ReceiptItem[0]));
+        printer.print();
+    }
+    /**
      * The action listener for the user clicking on an item in the
      * receipt item list.
+     *
      * @param e         The list selection event.
      */
     @Override
@@ -1487,6 +1495,45 @@ class Model {
      */
     ReceiptItem customerLookup(int number) {
         return null;
+    }
+}
+
+
+/**
+ * The class for a printer. This class mimics the function of a printer, due to
+ * lack of hardware. This may be converted into a Java Interface or something
+ * later.
+ *
+ * @author asinck
+ * @version 0.0
+ */
+class Printer {
+    private ReceiptItem[] list;
+    private double taxRate = 0.086;
+
+    /**
+     * Class constructor.
+     *
+     * @param _list The list of ReceiptItem's to initialize with
+     */
+    Printer (ReceiptItem[] _list) {
+        list = _list;
+    }
+
+    /**
+     * Prints the receipt, using the toString of the ReceiptItem class.
+     */
+    void print() {
+        double total = 0.0;
+        for (ReceiptItem item : list) {
+            System.out.println(item);
+            total += item.getTotal();
+        }
+        System.out.println("____________________________________________");
+        System.out.printf("Subtotal %-10.2f\n", total);
+        System.out.printf("Tax      %-10.2f\n", (taxRate * total));
+        System.out.printf("Total    %-10.2f\n", (total + (taxRate * total)));
+        System.out.println("____________________________________________");
     }
 }
 
