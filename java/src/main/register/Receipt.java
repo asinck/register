@@ -152,10 +152,12 @@ class Receipt implements ListSelectionListener {
      * @param item      The item to be added to the list
      */
     void addItem(ReceiptItem item) {
-        receipt.clearSelection();
-        receiptList.addElement(item);
-        total += item.getTotal();
-        updateInfoBar();
+        if (item != null) {
+            receipt.clearSelection();
+            receiptList.addElement(item);
+            total += item.getTotal();
+            updateInfoBar();
+        }
     }
 
     /**
@@ -164,14 +166,16 @@ class Receipt implements ListSelectionListener {
      * @param newItem      The item to update the current selection to
      */
     void updateItem(ReceiptItem newItem) {
-        int index = receipt.getSelectedIndex();
-        if (index != -1) {
-            ReceiptItem item = receiptList.getElementAt(index);
-            total -= item.getTotal();
-            total += newItem.getTotal();
-            receiptList.set(index, newItem);
+        if (newItem != null) {
+            int index = receipt.getSelectedIndex();
+            if (index != -1) {
+                ReceiptItem item = receiptList.getElementAt(index);
+                total -= item.getTotal();
+                total += newItem.getTotal();
+                receiptList.set(index, newItem);
+            }
+            updateInfoBar();
         }
-        updateInfoBar();
     }
 
     /**

@@ -30,12 +30,24 @@ public class ReceiptTest {
         //test indexing
         receipt.setSelection(0);
         assertEquals(-1, receipt.getSelection());
-        
+
+        //test null on add
+        receipt.addItem(null);
+        assertEquals(myTotal, receipt.getTotal(), marginOfError);
+        assertEquals(-1, receipt.getSelection());
+
+
         //Add eggs
         receipt.addItem(eggs);
         myTotal += eggs.getTotal();
         assertEquals(myTotal, receipt.getTotal(), marginOfError);
-        
+
+        //test null on update
+        receipt.setSelection(0);
+        receipt.updateItem(null);
+        receipt.setSelection(0);
+        assertEquals(eggs, receipt.getItem());
+
         //Add bacon
         receipt.addItem(bacon);
         myTotal += bacon.getTotal();
@@ -49,8 +61,6 @@ public class ReceiptTest {
         receipt.setSelection(1);
         assertEquals(1, receipt.getSelection());
         assertEquals(bacon, receipt.getItem());
-
-
 
         //this should still have 1 because that's the last element
         receipt.setSelection(2);
@@ -78,6 +88,13 @@ public class ReceiptTest {
         receipt.removeItem();
         receipt.setSelection(0);
         receipt.removeItem();
+        assertEquals(myTotal, receipt.getTotal(), marginOfError);
+
+        //clear and do an update / null test
+        receipt.clear();
+        receipt.setSelection(0);
+        receipt.updateItem(null);
+        assertEquals(-1, receipt.getSelection());
         assertEquals(myTotal, receipt.getTotal(), marginOfError);
 
 
