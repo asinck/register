@@ -3,3 +3,11 @@ notifications:
     email: false
     webhooks:
       - http://helit.tech:8093/+the-map/showSuccessfulBuildMessages=always
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
