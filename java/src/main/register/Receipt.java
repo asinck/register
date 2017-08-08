@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 /**
@@ -22,7 +21,7 @@ import javax.swing.event.ListSelectionListener;
  * @author Adam Sinck
  * @version 0.0
  */
-class Receipt implements ListSelectionListener {
+class Receipt {
     /**
      * This is the container for the entire GUI representation of the
      * receipt.
@@ -50,10 +49,9 @@ class Receipt implements ListSelectionListener {
      *
      * @param listener   The action listener.
      */
-    Receipt(ActionListener listener) {
+    Receipt(ActionListener listener, ListSelectionListener selectionListener) {
         total = 0.0;
         container = new JPanel();
-        //TODO: change the layout to something better.
         container.setLayout(new GridBagLayout());
         GridBagConstraints layout = new GridBagConstraints();
 
@@ -64,7 +62,7 @@ class Receipt implements ListSelectionListener {
         // receipt.setCellRenderer(new ReceiptItemRenderer());
         receipt.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         receipt.setLayoutOrientation(JList.VERTICAL);
-        receipt.addListSelectionListener(this);
+        receipt.addListSelectionListener(selectionListener);
         receipt.setVisibleRowCount(5);
 //        JScrollPane listScrollPane = new JScrollPane(receipt);
 
@@ -296,27 +294,6 @@ class Receipt implements ListSelectionListener {
         Printer printer = new Printer(ri.toArray(new ReceiptItem[0]));
         printer.print();
     }
-    /**
-     * The action listener for the user clicking on an item in the
-     * receipt item list.
-     *
-     * @param e         The list selection event.
-     */
-    @Override
-    public void valueChanged(ListSelectionEvent e) {
 
-        // if (e.getValueIsAdjusting() == false) {
-
-        //     if (list.getSelectedIndex() == -1) {
-        //         //No selection, disable fire button.
-        //         fireButton.setEnabled(false);
-
-        //     }
-        //     else {
-        //         //Selection, enable the fire button.
-        //         fireButton.setEnabled(true);
-        //     }
-        // }
-    }
 
 }

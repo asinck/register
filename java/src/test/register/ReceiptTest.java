@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ReceiptTest {
 	
-    private Receipt receipt = new Receipt(null);
+    private Receipt receipt = new Receipt(null, null);
 
     //No, I was not hungry when I wrote this.
     //Yes, I like perfect formatting.

@@ -4,8 +4,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  * The Graphical interface for the program. This class defines the
@@ -16,7 +17,7 @@ import javax.swing.JFrame;
  * @version 0.0
  */
 
-class RegisterGUI extends JFrame implements ActionListener {
+class RegisterGUI extends JFrame implements ActionListener, ListSelectionListener {
     private JFrame myWindow;
     private ApplicationMenu applicationMenu;
     private Header header;
@@ -55,7 +56,7 @@ class RegisterGUI extends JFrame implements ActionListener {
         myWindow.add(header.getHeader(), layout);
 
         //make it fill the the left side up to the header and footer
-        receipt          = new Receipt(this);
+        receipt          = new Receipt(this, this);
         layout.fill      = GridBagConstraints.BOTH;
         layout.anchor    = GridBagConstraints.LINE_START;
         layout.gridx     = 0;
@@ -109,13 +110,14 @@ class RegisterGUI extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent event) {
+        //TODO: Add a hardware interface to handle all hardware interaction
+
         //command gets the text of the button
         String command = event.getActionCommand();
 
         if (event.getSource() == receipt.getPrintButton()) {
             receipt.print();
         }
-
         else if (event.getSource() == receipt.getRemoveButton()) {
             receipt.removeItem();
         }
@@ -127,9 +129,26 @@ class RegisterGUI extends JFrame implements ActionListener {
             receipt.addItem(item);
             display.clear();
         }
+        else if (event.getSource() == display.getItemUpdateButton()) {
+            receipt.updateItem(display.getItem());
+        }
         else {
             footer.setStatus("Received command: " + command);
         }
+    }
 
+    /**
+     * The list selection listener for the user clicking on an item
+     * in the receipt item list.
+     *
+     * @param e         The list selection event.
+     */
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        if (!e.getValueIsAdjusting()) {
+            ReceiptItem item = receipt.getItem();
+//            System.out.println(item);
+            display.setItem(item);
+        }
     }
 }

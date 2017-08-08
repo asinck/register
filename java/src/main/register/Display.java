@@ -101,7 +101,7 @@ class Display {
      *
      * @return The update button
      */
-    public JButton getItemUpdateButton() {
+    JButton getItemUpdateButton() {
         return itemUpdateButton;
     }
 
@@ -122,6 +122,18 @@ class Display {
         return null;
     }
 
+    /**
+     * Puts an item in the automatic input field. This can serve two purposes:
+     * to display the just scanned item, or to allow editing of items.
+     *
+     * @param item the item to fill the fields with
+     */
+    void setItem(ReceiptItem item) {
+        //switch to the automatic input tab
+        tabbedPane.setSelectedIndex(AUTOMATIC_INPUT_TAB);
+
+        automaticInput.setItem(item);
+    }
     /**
      * Clears the item input fields.
      */
