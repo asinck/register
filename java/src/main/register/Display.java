@@ -6,8 +6,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 /**
  * The class for the main display.
@@ -46,12 +44,7 @@ class Display {
         container = new JPanel();
         tabbedPane = new JTabbedPane();
         //every time a tab is changed, clear the item input fields
-        tabbedPane.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                clear();
-//                System.out.println("Tab: " + tabbedPane.getSelectedIndex());
-            }
-        });
+        tabbedPane.addChangeListener(e -> clear());
 
         container.add(tabbedPane);
 
