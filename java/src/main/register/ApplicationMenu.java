@@ -53,6 +53,7 @@ class ApplicationMenu {
         JMenu file = new JMenu("File");
         JMenuItem file_quit = new JMenuItem("Quit");
           file.add(file_quit);
+          file_quit.addActionListener(e -> System.exit(0));
 
 
         //The root of the edit menu
