@@ -60,20 +60,26 @@ class ApplicationMenu {
         JMenu edit = new JMenu("Edit");
           JMenuItem edit_undo = new JMenuItem("Undo");
           edit.add(edit_undo);
+          edit_undo.addActionListener(listener);
           JMenuItem edit_redo = new JMenuItem("Redo");
           edit.add(edit_redo);
+          edit_redo.addActionListener(listener);
 
         //The root of the preferences menu
         JMenu preferences = new JMenu("Preferences");
         JMenu preferences_colorTheme = new JMenu("Color Theme");
           JMenuItem preferences_colorTheme_light = new JMenuItem("Light");
           preferences_colorTheme.add(preferences_colorTheme_light);
+          preferences_colorTheme_light.addActionListener(listener);
           JMenuItem preferences_colorTheme_dark = new JMenuItem("Dark");
           preferences_colorTheme.add(preferences_colorTheme_dark);
           preferences.add(preferences_colorTheme);
+          preferences_colorTheme_dark.addActionListener(listener);
+
           preferences.addSeparator();
           JMenuItem preferences_options = new JMenuItem("Options");
           preferences.add(preferences_options);
+          preferences_options.addActionListener(listener);
 
         menuBar.add(file);
         menuBar.add(edit);
