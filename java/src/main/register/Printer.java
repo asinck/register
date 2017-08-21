@@ -8,7 +8,7 @@ package register;
  * @author asinck
  * @version 0.0
  */
-class Printer {
+class Printer implements HardwareInterface_Printer {
     private ReceiptItem[] list;
     private double taxRate = 0.086;
 
@@ -24,7 +24,7 @@ class Printer {
     /**
      * Prints the receipt, using the toString of the ReceiptItem class.
      */
-    void print() {
+    public void print() {
         double total = 0.0;
         for (ReceiptItem item : list) {
             System.out.println(item);

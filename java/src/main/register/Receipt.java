@@ -291,7 +291,7 @@ class Receipt {
         for (int i = 0; i < receiptList.getSize(); i++) {
             ri.add(receiptList.get(i));
         }
-        Printer printer = new Printer(ri.toArray(new ReceiptItem[0]));
+        HardwareInterface_Printer printer = new Printer(ri.toArray(new ReceiptItem[0]));
         printer.print();
     }
 
