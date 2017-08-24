@@ -1,4 +1,6 @@
 package register;
 
-public interface HardwareInterface_Scanner {
+interface HardwareInterface_Scanner {
+    ReceiptItem getItem();
+    void lookup();
 }

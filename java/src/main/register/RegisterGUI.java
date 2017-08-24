@@ -87,14 +87,13 @@ class RegisterGUI extends JFrame implements ActionListener, ListSelectionListene
         layout.gridwidth = 3;
         myWindow.add(footer.getFooter(), layout);
 
+        /*
+        hardware interfaces
+         */
 
-        //This is for the top of the GUI - the application menus and
-        //the headers.
-        // topBar = new JPanel(new GridLayout());
-        // myWindow.add(topBar);
+        HardwareInterface_Scanner scanner = new Scanner(this);
 
-        // receiptPanel = createReceiptModule();
-        // myWindow.add(receiptPanel);
+
 
         //Turns out we want to see the window we just created. Who knew?
         myWindow.setVisible(true);
