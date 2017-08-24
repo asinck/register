@@ -38,6 +38,7 @@ class Model {
      *         null if not found
      */
     ReceiptItem customerLookup(int number) {
+        //TODO: Make a customer item. They aren't receiptItems.
         return null;
     }
 }
