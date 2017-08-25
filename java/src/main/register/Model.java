@@ -37,8 +37,7 @@ class Model {
      * @return the customer corresponding to the given number, or
      *         null if not found
      */
-    ReceiptItem customerLookup(int number) {
-        //TODO: Make a customer item. They aren't receiptItems.
+     Customer customerLookup(int number) {
         return null;
     }
 }
