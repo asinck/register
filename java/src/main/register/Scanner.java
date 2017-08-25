@@ -25,6 +25,9 @@ class Scanner implements HardwareInterface_Scanner {
     private ItemInput input;
 
     private JTextField barcodeInput;
+
+    private JButton itemAddButton;
+
     /**
      * Class constructor.
      *
@@ -81,7 +84,7 @@ class Scanner implements HardwareInterface_Scanner {
         layout.gridwidth = 3;
         ScannerWindow.add(input.getItemInput(), layout);
 
-        JButton itemAddButton = new JButton("Add");
+        itemAddButton = new JButton("Add");
         itemAddButton.addActionListener(listener);
 
         layout.gridy     = 2;
@@ -101,6 +104,13 @@ class Scanner implements HardwareInterface_Scanner {
      */
     public ReceiptItem getItem() {
         return input.getItem();
+    }
+
+    /**
+     * Clear the input fields.
+     */
+    public void clear() {
+        input.clear();
     }
 
     /**
@@ -127,4 +137,12 @@ class Scanner implements HardwareInterface_Scanner {
         }
     }
 
+    /**
+     * Returns the item add button for the event listener
+     *
+     * @return the item add button
+     */
+    public JButton getItemAddButton() {
+        return itemAddButton;
+    }
 }

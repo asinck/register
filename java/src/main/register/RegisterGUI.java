@@ -24,6 +24,7 @@ class RegisterGUI extends JFrame implements ActionListener, ListSelectionListene
     private Receipt receipt;
     private Display display;
     private Footer footer;
+    private HardwareInterface_Scanner scanner;
 
     /**
      * The class constructor.
@@ -91,7 +92,7 @@ class RegisterGUI extends JFrame implements ActionListener, ListSelectionListene
         hardware interfaces
          */
 
-        HardwareInterface_Scanner scanner = new Scanner(this);
+        scanner = new Scanner(this);
 
 
 
@@ -114,6 +115,8 @@ class RegisterGUI extends JFrame implements ActionListener, ListSelectionListene
         //command gets the text of the button
         String command = event.getActionCommand();
 
+//        System.out.println(event.getSource());
+//        System.out.println(scanner.getItemAddButton());
         if (event.getSource() == receipt.getPrintButton()) {
             receipt.print();
         }
@@ -130,6 +133,13 @@ class RegisterGUI extends JFrame implements ActionListener, ListSelectionListene
         }
         else if (event.getSource() == display.getItemUpdateButton()) {
             receipt.updateItem(display.getItem());
+        }
+        else if (event.getSource() == scanner.getItemAddButton()) {
+            ReceiptItem item = scanner.getItem();
+            if (item != null) {
+                receipt.addItem(item);
+                scanner.clear();
+            }
         }
         else {
             footer.setStatus("Received command: " + command);
