@@ -22,7 +22,7 @@ public class CustomerTest {
                     phoneNumber, member, subscribe);
     
     @Test
-    public void testFooter() {
+    public void testCustomer() {
         
         assertEquals(al1, customer.getAddressL1());
         assertEquals(al2, customer.getAddressL2());
