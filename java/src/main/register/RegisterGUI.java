@@ -25,7 +25,7 @@ class RegisterGUI extends JFrame implements ActionListener, ListSelectionListene
     private Display display;
     private Footer footer;
     private HardwareInterface_Scanner scanner;
-    Model model;
+    private Model model;
     /**
      * The class constructor.
      *
@@ -112,11 +112,8 @@ class RegisterGUI extends JFrame implements ActionListener, ListSelectionListene
      */
     @Override
     public void actionPerformed(ActionEvent event) {
-        //TODO: Add a hardware interface to handle all hardware interaction
-
         //command gets the text of the button
         String command = event.getActionCommand();
-
 
         /* receipt */
         if (event.getSource() == receipt.getPrintButton()) {
