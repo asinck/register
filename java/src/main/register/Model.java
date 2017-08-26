@@ -37,7 +37,37 @@ class Model {
      * @return the customer corresponding to the given number, or
      *         null if not found
      */
-     Customer customerLookup(int number) {
+    Customer customerLookup(int number) {
         return null;
     }
+
+    /**
+     * add a customer to the database, if they aren't in it already
+     *
+     * @param customer the customer to add
+     */
+    void addCustomer(Customer customer) {
+        System.out.println("Adding customer");
+    }
+
+
+    /**
+     * update a customer in the database
+     *
+     * @param customer the customer to update
+     */
+    void updateCustomer(Customer customer) {
+        System.out.println("Updating customer");
+    }
+
+    /**
+     * delete a customer from the database
+     *
+     * @param customer the customer to delete
+     */
+    void deleteCustomer(Customer customer) {
+        System.out.println("Deleting customer");
+
+    }
+
 }

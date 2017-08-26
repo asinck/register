@@ -39,12 +39,19 @@ class CustomerInfo {
         stateField, emailField;
     private JFormattedTextField zipCodeField, phoneNumberField;
 
+
+    private Customer customer;
+    private boolean membership, subscription;
     /**
      * Class constructor.
      *
      * @param listener   The action listener.
      */
     CustomerInfo(ActionListener listener) {
+        customer = null;
+        membership = false;
+        subscription = false;
+
         container = new JPanel();
         container.setLayout(new GridBagLayout());
         GridBagConstraints layout;
@@ -72,10 +79,11 @@ class CustomerInfo {
         updateButton       = new JButton("Update");
         deleteButton       = new JButton("Delete");
 
-        subscribeYesButton.addActionListener(listener);
-        subscribeNoButton.addActionListener(listener);
-        memberYesButton.addActionListener(listener);
-        memberNoButton.addActionListener(listener);
+        subscribeYesButton.addActionListener(e -> subscription = true);
+        subscribeNoButton.addActionListener(e -> subscription = true);
+        memberYesButton.addActionListener(e -> membership = true);
+        memberNoButton.addActionListener(e -> membership = false);
+
         addButton.addActionListener(listener);
         updateButton.addActionListener(listener);
         deleteButton.addActionListener(listener);
@@ -204,6 +212,65 @@ class CustomerInfo {
         return container;
     }
 
+
+    /**
+     * Get the current customer object
+     *
+     * @return the customer in the fields
+     */
+    Customer getCustomer() {
+        String addressL1 = addressL1Field.getText();
+        String addressL2 = addressL1Field.getText();
+        String city = cityField.getText();
+        String state = stateField.getText();
+        String email = emailField.getText();
+        String zipString = zipCodeField.getText();
+        String phoneNumberString = phoneNumberField.getText();
+
+        int zip = -1;
+        int phoneNumber = -1;
+        try {
+            zip = Integer.parseInt(zipString);
+        } catch (NumberFormatException ignored) {}
+
+        try {
+            phoneNumber = Integer.parseInt(phoneNumberString);
+        } catch (NumberFormatException ignored) {}
+
+        if (!(addressL1.equals("") || addressL2.equals(""))) {
+            customer = new Customer(addressL1, addressL2, city, state, zip, email, phoneNumber, membership, subscription);
+            return customer;
+        }
+        return null;
+
+    }
+
+    /**
+     * Returns the add button for the event listener
+     *
+     * @return the add button
+     */
+    JButton getAddButton() {
+        return addButton;
+    }
+
+    /**
+     * Returns the update button for the event listener
+     *
+     * @return the update button
+     */
+    JButton getUpdateButton() {
+        return updateButton;
+    }
+
+    /**
+     * Returns the delete button for the event listener
+     *
+     * @return the delete button
+     */
+    JButton getDeleteButton() {
+        return deleteButton;
+    }
 
     /**
      * Generates a layout and returns it. This method was written to

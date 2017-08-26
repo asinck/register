@@ -25,13 +25,15 @@ class RegisterGUI extends JFrame implements ActionListener, ListSelectionListene
     private Display display;
     private Footer footer;
     private HardwareInterface_Scanner scanner;
-
+    Model model;
     /**
      * The class constructor.
      *
      * This arranges all the components of the GUI inside it.
      */
     RegisterGUI() {
+        model = new Model();
+
         //this is the top level window.
         myWindow = new JFrame();
         myWindow.setTitle("Register");
@@ -115,17 +117,21 @@ class RegisterGUI extends JFrame implements ActionListener, ListSelectionListene
         //command gets the text of the button
         String command = event.getActionCommand();
 
-//        System.out.println(event.getSource());
-//        System.out.println(scanner.getItemAddButton());
+
+        /* receipt */
         if (event.getSource() == receipt.getPrintButton()) {
             receipt.print();
         }
         else if (event.getSource() == receipt.getRemoveButton()) {
             receipt.removeItem();
         }
+
+        /* footer */
         else if (event.getSource() == footer.getCancelButton()) {
             receipt.clear();
         }
+
+        /* display */
         else if (event.getSource() == display.getItemAddButton()) {
             ReceiptItem item = display.getItem();
             receipt.addItem(item);
@@ -134,9 +140,21 @@ class RegisterGUI extends JFrame implements ActionListener, ListSelectionListene
         else if (event.getSource() == display.getItemUpdateButton()) {
             receipt.updateItem(display.getItem());
         }
+        else if (event.getSource() == display.getCustomerInfoAddButton()) {
+            model.addCustomer(display.getCustomer());
+        }
+        else if (event.getSource() == display.getCustomerInfoUpdateButton()) {
+            model.updateCustomer(display.getCustomer());
+        }
+        else if (event.getSource() == display.getCustomerInfoDeleteButton()) {
+            model.deleteCustomer(display.getCustomer());
+        }
+
+        /* scanner (hardware) */
         else if (event.getSource() == scanner.getItemAddButton()) {
             ReceiptItem item = scanner.getItem();
             if (item != null) {
+                //TODO: this should tell the display to show the most recent item
                 receipt.addItem(item);
                 scanner.clear();
             }

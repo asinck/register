@@ -22,5 +22,7 @@ public class DisplayTest {
         assertEquals(null, display.getItem());
 
         System.out.println("All tests passed.");
+
+        //TODO: test the customer input fields
     }
 }

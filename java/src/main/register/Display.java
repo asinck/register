@@ -34,6 +34,7 @@ class Display {
     private final int MANUAL_INPUT_TAB = 1;
     private final int CUSTOMER_TAB = 2;
 
+    CustomerInfo customerInfo;
     /**
      * Class constructor.
      *
@@ -72,7 +73,7 @@ class Display {
         JPanel customerTab = new JPanel();
         customerTab.setLayout(new BoxLayout(customerTab,
                                             BoxLayout.Y_AXIS));
-        CustomerInfo customerInfo = new CustomerInfo(listener);
+        customerInfo = new CustomerInfo(listener);
         customerTab.add(customerInfo.getCustomerInfo());
 
         tabbedPane.addTab("Current item", currentItemTab);
@@ -113,6 +114,42 @@ class Display {
             return manualInput.getItem();
         }
         return null;
+    }
+
+    /**
+     * Returns the customer info add button for the event listener
+     *
+     * @return the customer info add button
+     */
+    JButton getCustomerInfoAddButton() {
+        return customerInfo.getAddButton();
+    }
+
+    /**
+     * Returns the customer info update button for the event listener
+     *
+     * @return the customer info update button
+     */
+    JButton getCustomerInfoUpdateButton() {
+        return customerInfo.getUpdateButton();
+    }
+
+    /**
+     * Returns the customer info delete button for the event listener
+     *
+     * @return the customer info delete button
+     */
+    JButton getCustomerInfoDeleteButton() {
+        return customerInfo.getDeleteButton();
+    }
+
+    /**
+     * Returns the customer info customer object
+     *
+     * @return the customer info object from the input fields
+     */
+    Customer getCustomer() {
+        return customerInfo.getCustomer();
     }
 
     /**
