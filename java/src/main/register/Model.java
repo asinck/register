@@ -26,6 +26,7 @@ class Model {
      *         if not found
      */
     ReceiptItem itemLookup(int code) {
+        System.out.printf("Searching for item %d", code);
         return null;
     }
 
@@ -38,6 +39,7 @@ class Model {
      *         null if not found
      */
     Customer customerLookup(int number) {
+        System.out.printf("Searching for customer %d", number);
         return null;
     }
 
@@ -47,7 +49,7 @@ class Model {
      * @param customer the customer to add
      */
     void addCustomer(Customer customer) {
-        System.out.println("Adding customer");
+        System.out.printf("Adding customer %s", customer.getEmail());
     }
 
 
@@ -57,7 +59,7 @@ class Model {
      * @param customer the customer to update
      */
     void updateCustomer(Customer customer) {
-        System.out.println("Updating customer");
+        System.out.printf("Updating customer %s", customer.getEmail());
     }
 
     /**
@@ -66,7 +68,7 @@ class Model {
      * @param customer the customer to delete
      */
     void deleteCustomer(Customer customer) {
-        System.out.println("Deleting customer");
+        System.out.printf("Deleting customer %s", customer.getEmail());
 
     }
 
