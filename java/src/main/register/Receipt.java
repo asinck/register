@@ -207,7 +207,12 @@ class Receipt {
      * @param index     the index to set the selection to
      */
     void setSelection(int index) {
-        receipt.setSelectedIndex(index);
+        if (index >= 0) {
+            receipt.setSelectedIndex(index);
+        }
+        else {
+            receipt.setSelectedIndex(receiptList.getSize() - 1);
+        }
     }
 
     /**

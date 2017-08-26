@@ -154,9 +154,10 @@ class RegisterGUI extends JFrame implements ActionListener, ListSelectionListene
         else if (event.getSource() == scanner.getItemAddButton()) {
             ReceiptItem item = scanner.getItem();
             if (item != null) {
-                //TODO: this should tell the display to show the most recent item
-                receipt.addItem(item);
                 scanner.clear();
+                receipt.addItem(item);
+                receipt.setSelection(-1);
+                display.setItem(item);
             }
         }
         else {

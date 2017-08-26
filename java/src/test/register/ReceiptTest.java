@@ -113,6 +113,9 @@ public class ReceiptTest {
         
         assertEquals(myTotal, receipt.getTotal(), marginOfError);
 
+        //make sure that this sets the selection to the final element
+        receipt.setSelection(-1);
+        assertEquals(4, receipt.getSelection());
 
         //replace toast with coffee
         receipt.setSelection(2);
@@ -134,7 +137,7 @@ public class ReceiptTest {
         myTotal -= sausage.getTotal();
         myTotal += coffee.getTotal();
         assertEquals(myTotal, receipt.getTotal(), marginOfError);
-        
+
 
         //test clear
         receipt.clear();
