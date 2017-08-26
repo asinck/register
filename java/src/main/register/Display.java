@@ -34,7 +34,7 @@ class Display {
     private final int MANUAL_INPUT_TAB = 1;
     private final int CUSTOMER_TAB = 2;
 
-    CustomerInfo customerInfo;
+    private CustomerInfo customerInfo;
     /**
      * Class constructor.
      *
