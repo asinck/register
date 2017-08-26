@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class PrinterTest {
 
     @Test
-    public void testHeader() {
+    public void testPrinter() {
         Printer printer;
         ReceiptItem[] empty= {};
         printer = new Printer(empty);
