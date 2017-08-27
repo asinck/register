@@ -15,7 +15,7 @@ public class PrinterTest {
 
     @Test
     public void testPrinter() {
-        Printer printer;
+        HardwareInterface_Printer printer;
         ReceiptItem[] empty= {};
         printer = new Printer(empty);
         printer.print();
