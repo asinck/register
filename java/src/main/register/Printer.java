@@ -38,6 +38,7 @@ class Printer implements HardwareInterface_Printer {
         output.setEditable(false);
 
         PrinterWindow.add(output);
+
     }
 
     /**
