@@ -39,6 +39,7 @@ class Printer implements HardwareInterface_Printer {
 
         PrinterWindow.add(output);
 
+        PrinterWindow.setVisible(true);
     }
 
     /**
@@ -62,6 +63,6 @@ class Printer implements HardwareInterface_Printer {
 
         output.setText(stringOutput.toString());
 
-        PrinterWindow.setVisible(true);
+
     }
 }

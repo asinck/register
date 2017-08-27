@@ -17,12 +17,12 @@ public class PrinterTest {
     public void testPrinter() {
         HardwareInterface_Printer printer;
         ReceiptItem[] empty = {};
-        new Printer(empty);
-//        printer.print();
+        printer = new Printer(empty);
+        printer.print();
 
         ReceiptItem[] ri = {new ReceiptItem("milk", 1, 2.00)};
-        new Printer(ri);
-//        printer.print();
+        printer = new Printer(ri);
+        printer.print();
 
         ArrayList<ReceiptItem> list = new ArrayList<>();
         list.add(new ReceiptItem("eggs",     1,    3.33));
@@ -33,8 +33,8 @@ public class PrinterTest {
         list.add(new ReceiptItem("coffee",   10,   1.50));
         list.add(new ReceiptItem("orange juice", 2,   2.00));
 
-        new Printer(list.toArray(new ReceiptItem[0]));
-//        printer.print();
+        printer = new Printer(list.toArray(new ReceiptItem[0]));
+        printer.print();
 
         System.out.println("All tests passed.");
     }
