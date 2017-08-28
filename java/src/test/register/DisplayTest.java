@@ -7,7 +7,8 @@ public class DisplayTest {
 
     @Test
     public void testDisplay() {
-        Display display = new Display(null);
+        CustomerInfo customerInfo = new CustomerInfo(null);
+        Display display = new Display(null, customerInfo);
 
         //test for null
         assertEquals(null, display.getItem());
