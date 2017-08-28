@@ -23,6 +23,7 @@ class RegisterGUI extends JFrame implements ActionListener, ListSelectionListene
     private Header header;
     private Receipt receipt;
     private Display display;
+    private CustomerInfo customerInfo;
     private Footer footer;
     private HardwareInterface_Scanner scanner;
     private Model model;
@@ -68,8 +69,12 @@ class RegisterGUI extends JFrame implements ActionListener, ListSelectionListene
         layout.gridwidth = 1;
         myWindow.add(receipt.getReceiptPanel(), layout);
 
+
         //for the main display, to the right of the receipt display.
-        display          = new Display(this);
+        customerInfo = new CustomerInfo(this);
+
+
+        display          = new Display(this, customerInfo);
         layout.fill      = GridBagConstraints.BOTH;
         layout.anchor    = GridBagConstraints.CENTER;
         layout.gridx     = 1;
@@ -137,14 +142,19 @@ class RegisterGUI extends JFrame implements ActionListener, ListSelectionListene
         else if (event.getSource() == display.getItemUpdateButton()) {
             receipt.updateItem(display.getItem());
         }
-        else if (event.getSource() == display.getCustomerInfoAddButton()) {
-            model.addCustomer(display.getCustomer());
+        else if (event.getSource() == customerInfo.getAddButton()) {
+            model.addCustomer(customerInfo.getCustomer());
         }
-        else if (event.getSource() == display.getCustomerInfoUpdateButton()) {
-            model.updateCustomer(display.getCustomer());
+        else if (event.getSource() == customerInfo.getUpdateButton()) {
+            model.updateCustomer(customerInfo.getCustomer());
         }
-        else if (event.getSource() == display.getCustomerInfoDeleteButton()) {
-            model.deleteCustomer(display.getCustomer());
+        else if (event.getSource() == customerInfo.getDeleteButton()) {
+            model.deleteCustomer(customerInfo.getCustomer());
+        }
+        else if (event.getSource() == customerInfo.getLookupButton()) {
+            //TODO: This needs to be tested as soon as the Model is ready.
+            Customer customer = model.customerLookup(customerInfo.getLookupKey());
+            customerInfo.setCustomer(customer);
         }
 
         /* scanner (hardware) */

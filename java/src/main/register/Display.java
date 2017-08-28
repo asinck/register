@@ -34,13 +34,13 @@ class Display {
     private final int MANUAL_INPUT_TAB = 1;
     private final int CUSTOMER_TAB = 2;
 
-    private CustomerInfo customerInfo;
+//    private CustomerInfo customerInfo;
     /**
      * Class constructor.
      *
      * @param listener   The action listener.
      */
-    Display(ActionListener listener) {
+    Display(ActionListener listener, CustomerInfo customerInfo) {
 
         container = new JPanel();
         tabbedPane = new JTabbedPane();
@@ -73,7 +73,7 @@ class Display {
         JPanel customerTab = new JPanel();
         customerTab.setLayout(new BoxLayout(customerTab,
                                             BoxLayout.Y_AXIS));
-        customerInfo = new CustomerInfo(listener);
+//        customerInfo = new CustomerInfo(listener);
         customerTab.add(customerInfo.getCustomerInfo());
 
         tabbedPane.addTab("Current item", currentItemTab);
@@ -116,41 +116,44 @@ class Display {
         return null;
     }
 
-    /**
-     * Returns the customer info add button for the event listener
-     *
-     * @return the customer info add button
-     */
-    JButton getCustomerInfoAddButton() {
-        return customerInfo.getAddButton();
-    }
-
-    /**
-     * Returns the customer info update button for the event listener
-     *
-     * @return the customer info update button
-     */
-    JButton getCustomerInfoUpdateButton() {
-        return customerInfo.getUpdateButton();
-    }
-
-    /**
-     * Returns the customer info delete button for the event listener
-     *
-     * @return the customer info delete button
-     */
-    JButton getCustomerInfoDeleteButton() {
-        return customerInfo.getDeleteButton();
-    }
-
-    /**
-     * Returns the customer info customer object
-     *
-     * @return the customer info object from the input fields
-     */
-    Customer getCustomer() {
-        return customerInfo.getCustomer();
-    }
+//    /**
+//     * Returns the customer info add button for the event listener
+//     *
+//     * @return the customer info add button
+//     */
+//    JButton getCustomerInfoAddButton() {
+//        return customerInfo.getAddButton();
+//    }
+//
+//    /**
+//     * Returns the customer info update button for the event listener
+//     *
+//     * @return the customer info update button
+//     */
+//    JButton getCustomerInfoUpdateButton() {
+//        return customerInfo.getUpdateButton();
+//    }
+//
+//    /**
+//     * Returns the customer info delete button for the event listener
+//     *
+//     * @return the customer info delete button
+//     */
+//    JButton getCustomerInfoDeleteButton() {
+//        return customerInfo.getDeleteButton();
+//    }
+//
+//    JButton getCustomerInfoLookupButton() {
+//        return customerInfo.getLookupButton();
+//    }
+//    /**
+//     * Returns the customer info customer object
+//     *
+//     * @return the customer info object from the input fields
+//     */
+//    Customer getCustomer() {
+//        return customerInfo.getCustomer();
+//    }
 
     /**
      * Puts an item in the automatic input field. This can serve two purposes:
