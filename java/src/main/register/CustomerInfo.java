@@ -28,13 +28,16 @@ class CustomerInfo {
     private JPanel container;
 //    private JLabel header, addressLabel, phoneNumberLabel,
 //        emailLabel, memberLabel, subscribeLabel;
-    private JButton subscribeYesButton, subscribeNoButton, memberYesButton, memberNoButton, addButton, updateButton, deleteButton;
+    private JButton addButton, updateButton, deleteButton;
 //    private JButton memberYesButton;
 //    private JButton memberNoButton;
 //    private JButton addButton;
 //    private JButton updateButton;
 //    private JButton deleteButton;
     //TODO: make "state" a dropdown
+    private JTextField phoneLookupField;
+    private JButton lookupButton;
+
     private JTextField addressL1Field, addressL2Field, cityField,
         stateField, emailField;
     private JFormattedTextField zipCodeField, phoneNumberField;
@@ -65,16 +68,21 @@ class CustomerInfo {
           First, make all the components
          */
         JLabel header = new JLabel("Customer Info");
+
+        phoneLookupField = new JTextField(shortFieldLength);
+        lookupButton = new JButton("Lookup");
+        lookupButton.addActionListener(listener);
+
         JLabel addressLabel       = new JLabel("Address");
         JLabel phoneNumberLabel   = new JLabel("Phone Number");
         JLabel emailLabel         = new JLabel("Email Address");
         JLabel memberLabel        = new JLabel("Member?");
         JLabel subscribeLabel     = new JLabel("Subscribe?");
 
-        subscribeYesButton = new JButton("Yes");
-        subscribeNoButton  = new JButton("No");
-        memberYesButton    = new JButton("Yes");
-        memberNoButton     = new JButton("No");
+        JButton subscribeYesButton = new JButton("Yes");
+        JButton subscribeNoButton  = new JButton("No");
+        JButton memberYesButton    = new JButton("Yes");
+        JButton memberNoButton     = new JButton("No");
         addButton          = new JButton("Add");
         updateButton       = new JButton("Update");
         deleteButton       = new JButton("Delete");
@@ -109,11 +117,18 @@ class CustomerInfo {
         // final int vt = GridBagConstraints.VERTICAL;
         // final int both = GridBagConstraints.BOTH;
 
-
-        // labels
-        layout = layoutGenerator(GridBagConstraints.HORIZONTAL, GridBagConstraints.PAGE_START, 0, 0, 1, 0, 3, 1);
+        //header
+        layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.FIRST_LINE_START, 0, 0, 1, 0, 1, 1);
         container.add(header, layout);
 
+        //lookup area
+        layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.PAGE_START, 1, 0, 0, 0, 1, 1);
+        container.add(phoneLookupField, layout);
+
+        layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.FIRST_LINE_END, 2, 0, 1, 0, 1, 1);
+        container.add(lookupButton, layout);
+
+        // labels
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_START, 0, 1, 1, 0, 2, 1);
         container.add(addressLabel, layout);
 
@@ -245,6 +260,25 @@ class CustomerInfo {
 
     }
 
+    void setCustomer(Customer customer) {
+        if (customer != null) {
+            addressL1Field.setText(customer.getAddressL1());
+            addressL2Field.setText(customer.getAddressL2());
+            cityField.setText(customer.getCity());
+            stateField.setText(customer.getState());
+            emailField.setText(customer.getEmail());
+            zipCodeField.setText("" + customer.getZip());
+            phoneNumberField.setText("" + customer.getPhoneNumber());
+        }
+    }
+
+    int getLookupKey() {
+        try {
+            return Integer.parseInt(phoneLookupField.getText());
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
     /**
      * Returns the add button for the event listener
      *
@@ -270,6 +304,15 @@ class CustomerInfo {
      */
     JButton getDeleteButton() {
         return deleteButton;
+    }
+
+    /**
+     * Returns the delete button for the event listener
+     *
+     * @return the delete button
+     */
+    JButton getLookupButton() {
+        return lookupButton;
     }
 
     /**
