@@ -1,8 +1,4 @@
-#compiled files
-*.class
-
-#emacs backup files
-*~
+# Compilation stuff
 
 #gradle build directory
 build/
@@ -10,10 +6,32 @@ build/
 #gradle hidden directory
 .gradle/
 
+#compiled files
+*.class
+
+
+# Editors
+
+# Yes, I use emacs, vim, IntelliJ, and Visual Studio. I'd add something for
+# the `cat` command for when I use `cat > file.txt` but that doesn't create
+# extra backup files.
+# I haven't ever used a butterfly though.
+
+#emacs backup files
+*~
+
+#vim backup (?) files
+*.swp
+
 #IntelliJ directories
 .idea/
 gradle/
 gradlew
 gradlew.bat
 register.iml
+
+#Visual Studio stuff
+.classpath
+.project
+.settings/
 
