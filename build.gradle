@@ -16,9 +16,16 @@ repositories { jcenter() }
 dependencies {
     testCompile "junit:junit:4.12"
     compile "junit:junit:4.12"
+
+    testCompile files("libs/sqlite-jdbc-3.20.0.jar")
+    compile files("libs/sqlite-jdbc-3.20.0.jar")
 }
 
 jar {
     manifest.attributes "Main-Class" : "register.Register"
+
+    from {
+        configurations.compile.collect {it.isDirectory() ? it : zipTree(it)}
+    }
 }
 

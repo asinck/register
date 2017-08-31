@@ -1,5 +1,6 @@
 package register;
 
+import java.sql.*;
 /**
  * The Model class for the MVC architecture. This handles all
  * significant data operations, including adding, editing, and
@@ -14,7 +15,42 @@ class Model {
      * Class constructor.
      */
     Model() {
+        Connection c = null;
 
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:test.db");
+            c.setAutoCommit(false);
+
+            System.out.println("connected to database.");
+
+            Statement stmt = c.createStatement();
+            String sql = "SELECT name FROM sqlite_master WHERE type='table'";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            int count = 0;
+            while (rs.next()) {
+                count += 1;
+            }
+            System.out.printf("%d results.", count);
+            if (count == 0) {
+                sql = "CREATE TABLE COMPANY " +
+                        "(ID INT PRIMARY KEY     NOT NULL," +
+                        " NAME           TEXT    NOT NULL, " +
+                        " AGE            INT     NOT NULL, " +
+                        " ADDRESS        CHAR(50), " +
+                        " SALARY         REAL)";
+                stmt.executeUpdate(sql);
+            }
+
+            rs.close();
+            stmt.close();
+            c.close();
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+        System.out.println("Opened database successfully");
     }
 
     /**
