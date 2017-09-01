@@ -50,26 +50,60 @@ class Model {
         }
     }
 
+    /**
+     * Checks to make sure that the tables that are supposed to be in the database are actually
+     * there.
+     */
     private void tableCheck() {
         try {
+            /*
+            Check that there are tables for
+             - Customers
+             - Items
+             */
 
             String sql = "SELECT name FROM sqlite_master WHERE type='table'";
             rs = stmt.executeQuery(sql);
+            boolean hasCustomersTable = false;
+            boolean hasItemsTable = false;
 
-            int count = 0;
             while (rs.next()) {
-                count += 1;
+                String name = rs.getString("name");
+
+                if (name.equals("Customer")) {
+                    hasCustomersTable = true;
+                }
+                else if (name.equals("Item")) {
+                    hasItemsTable = true;
+                }
             }
-            System.out.printf("%d results.\n", count);
-            if (count == 0) {
-                sql = "CREATE TABLE COMPANY " +
+
+            if (!hasCustomersTable) {
+                sql = "CREATE TABLE Customer " +
+                        "(Phone INT PRIMARY KEY NOT NULL," +
+                        " Email          CHAR(30), " +
+                        " AddressL1      CHAR(50), " +
+                        " AddressL2      CHAR(50), " +
+                        " City           CHAR(30), " +
+                        " State          CHAR(20), " +
+                        " Zip            INT, " +
+                        " Member         INT, " +
+                        " Subscribe      INT)";
+
+                stmt.executeUpdate(sql);
+                c.commit();
+            }
+
+            if (!hasItemsTable) {
+                sql = "CREATE TABLE Item " +
                         "(ID INT PRIMARY KEY     NOT NULL," +
                         " NAME           TEXT    NOT NULL, " +
-                        " AGE            INT     NOT NULL, " +
-                        " ADDRESS        CHAR(50), " +
-                        " SALARY         REAL)";
+                        " PRICE          REAL    NOT NULL)";
+
                 stmt.executeUpdate(sql);
+                c.commit();
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
             System.exit(1);
