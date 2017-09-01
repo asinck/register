@@ -4,6 +4,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JFrame;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -39,7 +42,15 @@ class RegisterGUI extends JFrame implements ActionListener, ListSelectionListene
         myWindow = new JFrame();
         myWindow.setTitle("Register");
         myWindow.setSize(1200,500);
-        myWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // https://stackoverflow.com/a/16372860
+        myWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        myWindow.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent event) {
+                destruct();
+            }
+        });
 
         myWindow.setLayout(new GridBagLayout());
         //specify how to lay stuff out
@@ -100,8 +111,6 @@ class RegisterGUI extends JFrame implements ActionListener, ListSelectionListene
          */
 
         scanner = new Scanner(this);
-
-
 
         //Turns out we want to see the window we just created. Who knew?
         myWindow.setVisible(true);
@@ -172,6 +181,7 @@ class RegisterGUI extends JFrame implements ActionListener, ListSelectionListene
         }
     }
 
+
     /**
      * The list selection listener for the user clicking on an item
      * in the receipt item list.
@@ -185,5 +195,14 @@ class RegisterGUI extends JFrame implements ActionListener, ListSelectionListene
 //            System.out.println(item);
             display.setItem(item);
         }
+    }
+
+    /**
+     * The destructor for this class. Tells the model to clean up after itself.
+     */
+    private void destruct() {
+        model.destruct();
+        myWindow.dispose();
+        System.exit(0);
     }
 }

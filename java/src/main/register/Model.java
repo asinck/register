@@ -1,6 +1,7 @@
 package register;
 
 import java.sql.*;
+
 /**
  * The Model class for the MVC architecture. This handles all
  * significant data operations, including adding, editing, and
@@ -10,29 +11,56 @@ import java.sql.*;
  * @version 0.0
  */
 class Model {
-
+    private Connection c;
+    private Statement stmt;
+    private ResultSet rs;
     /**
      * Class constructor.
      */
     Model() {
-        Connection c = null;
 
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:test.db");
             c.setAutoCommit(false);
 
-            System.out.println("connected to database.");
+            stmt = c.createStatement();
 
-            Statement stmt = c.createStatement();
+            tableCheck();
+
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+
+    /**
+     * The class destructor. This is manually called by the controller when the GUI exits.
+     *
+     * The purpose of this is to close all connections, such as for the database.
+     */
+    void destruct() {
+        try {
+            rs.close();
+            stmt.close();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+
+    private void tableCheck() {
+        try {
+
             String sql = "SELECT name FROM sqlite_master WHERE type='table'";
-            ResultSet rs = stmt.executeQuery(sql);
+            rs = stmt.executeQuery(sql);
 
             int count = 0;
             while (rs.next()) {
                 count += 1;
             }
-            System.out.printf("%d results.", count);
+            System.out.printf("%d results.\n", count);
             if (count == 0) {
                 sql = "CREATE TABLE COMPANY " +
                         "(ID INT PRIMARY KEY     NOT NULL," +
@@ -42,17 +70,11 @@ class Model {
                         " SALARY         REAL)";
                 stmt.executeUpdate(sql);
             }
-
-            rs.close();
-            stmt.close();
-            c.close();
-        } catch ( Exception e ) {
+        } catch (SQLException e) {
             e.printStackTrace();
             System.exit(1);
         }
-        System.out.println("Opened database successfully");
     }
-
     /**
      * Looks up the item code in the database and returns the item if
      * found and null otherwise.
