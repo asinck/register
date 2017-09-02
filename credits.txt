@@ -1,0 +1,1 @@
+PLU code database courtesy of http://www.ifpsglobal.com/Identification/PLU-Codes/PLU-codes-Search . Modified to only include first few columns. 

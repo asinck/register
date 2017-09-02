@@ -9,6 +9,8 @@ build/
 #compiled files
 *.class
 
+# Databases
+*.db
 
 # Editors
 

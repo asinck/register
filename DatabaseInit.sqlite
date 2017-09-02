@@ -1,0 +1,31 @@
+-- This initializes the database. 
+-- To run, enter the following command.
+-- sqlite3 infosys.db < DatabaseInit.sqlite
+
+-- Open the database
+.open "infosys.db"
+.mode csv
+
+-- Create the items table
+CREATE TABLE Item(
+    PLU INT,
+    VARIETY TEXT,
+    ADDITIONAL_INFO TEXT
+);
+
+-- import the CSV
+.import ./PLU.csv Item
+
+-- Create the Customer table
+CREATE TABLE Customer(
+    Phone INT  PRIMARY KEY NOT NULL,
+    Email          CHAR(30),
+    AddressL1      CHAR(50),
+    AddressL2      CHAR(50),
+    City           CHAR(30),
+    State          CHAR(20),
+    Zip            INT,
+    Membership     INT,
+    Subscription   INT
+);
+
