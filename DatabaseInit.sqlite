@@ -8,9 +8,9 @@
 
 -- Create the items table
 CREATE TABLE Item(
-    PLU INT,
-    VARIETY TEXT,
-    ADDITIONAL_INFO TEXT
+    PLU INT NOT NULL,
+    Variety TEXT NOT NULL,
+    Additional_info TEXT
 );
 
 -- import the CSV
