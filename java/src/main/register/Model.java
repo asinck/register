@@ -79,26 +79,26 @@ class Model {
             }
 
             if (!hasCustomersTable) {
-                sql = "CREATE TABLE Customer " +
-                        "(Phone INT PRIMARY KEY NOT NULL," +
-                        " Email          CHAR(30), " +
-                        " AddressL1      CHAR(50), " +
-                        " AddressL2      CHAR(50), " +
-                        " City           CHAR(30), " +
-                        " State          CHAR(20), " +
-                        " Zip            INT, " +
-                        " Member         INT, " +
-                        " Subscribe      INT)";
+                sql = "CREATE TABLE Customer(" +
+                        "Phone INT PRIMARY KEY NOT NULL, " +
+                        "Email          CHAR(30), " +
+                        "AddressL1      CHAR(50), " +
+                        "AddressL2      CHAR(50), " +
+                        "City           CHAR(30), " +
+                        "State          CHAR(20), " +
+                        "Zip            INT, " +
+                        "Membership     INT, " +
+                        "Subscription   INT)";
 
                 stmt.executeUpdate(sql);
                 c.commit();
             }
 
             if (!hasItemsTable) {
-                sql = "CREATE TABLE Item " +
-                        "(ID INT PRIMARY KEY     NOT NULL," +
-                        " NAME           TEXT    NOT NULL, " +
-                        " PRICE          REAL    NOT NULL)";
+                sql = "CREATE TABLE Item(" +
+                        "PLU   INT PRIMARY KEY    NOT NULL, " +
+                        "Variety          TEXT    NOT NULL, " +
+                        "Additional_info  REAL    NOT NULL)";
 
                 stmt.executeUpdate(sql);
                 c.commit();
