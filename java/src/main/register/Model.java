@@ -21,7 +21,7 @@ class Model {
 
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:test.db");
+            c = DriverManager.getConnection("jdbc:sqlite:infosys.db");
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
@@ -79,6 +79,7 @@ class Model {
             }
 
             if (!hasCustomersTable) {
+                System.out.println("WARNING: Customer database not found.");
                 sql = "CREATE TABLE Customer(" +
                         "Phone INT PRIMARY KEY NOT NULL, " +
                         "Email          CHAR(30), " +
@@ -95,6 +96,7 @@ class Model {
             }
 
             if (!hasItemsTable) {
+                System.out.println("WARNING: Item database not found.");
                 sql = "CREATE TABLE Item(" +
                         "PLU   INT PRIMARY KEY    NOT NULL, " +
                         "Variety          TEXT    NOT NULL, " +
@@ -119,6 +121,26 @@ class Model {
      */
     ReceiptItem itemLookup(int code) {
         System.out.printf("Searching for item %d\n", code);
+        String sql = "SELECT * FROM Item WHERE PLU = ?";
+        try {
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setInt(1, code);
+            rs = ps.executeQuery();
+            // https://stackoverflow.com/a/6813771
+            if (!rs.isBeforeFirst()) {
+                System.out.println("Invalid PLU.");
+                return null;
+            }
+            else {
+                // System.out.printf("Result: %s", re.next());
+                return new ReceiptItem(rs.getString("Variety"), 1, 0);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        // If Java was a modern language, it would know that I don't need this return statement.
+        // But ok.
         return null;
     }
 
