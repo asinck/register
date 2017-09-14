@@ -1,1 +1,1 @@
-PLU code database courtesy of http://www.ifpsglobal.com/Identification/PLU-Codes/PLU-codes-Search . Modified to only include first few columns. 
+PLU code database courtesy of http://www.ifpsglobal.com/Identification/PLU-Codes/PLU-codes-Search . Modified to only include first few columns, and to include prices. These prices were randomly generated. I wasn't the one that decided that bananas cost $82.04. 

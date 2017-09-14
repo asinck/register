@@ -10,7 +10,8 @@
 CREATE TABLE Item(
     PLU INT NOT NULL,
     Variety TEXT NOT NULL,
-    Additional_info TEXT
+    Additional_info TEXT,
+    Price Float NOT NULL
 );
 
 -- import the CSV

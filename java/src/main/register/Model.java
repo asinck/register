@@ -100,7 +100,8 @@ class Model {
                 sql = "CREATE TABLE Item(" +
                         "PLU   INT PRIMARY KEY    NOT NULL, " +
                         "Variety          TEXT    NOT NULL, " +
-                        "Additional_info  REAL    NOT NULL)";
+                        "Additional_info  REAL    NOT NULL," +
+                        "Price            Float   NOT NULL)";
 
                 stmt.executeUpdate(sql);
                 c.commit();
@@ -133,7 +134,7 @@ class Model {
             }
             else {
                 // System.out.printf("Result: %s", re.next());
-                return new ReceiptItem(rs.getString("Variety"), 1, 0);
+                return new ReceiptItem(rs.getString("Variety"), 1, rs.getDouble("Price"));
             }
 
         } catch (SQLException e) {

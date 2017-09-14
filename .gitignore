@@ -12,6 +12,11 @@ build/
 # Databases
 *.db
 
+# I used this script to modify the original database to include
+# prices. This is not relevant to the program; only to myself. I still
+# want to keep a local copy though.
+PLU-price-generator.py
+
 # Editors
 
 # Yes, I use emacs, vim, IntelliJ, and Visual Studio. I'd add something for
