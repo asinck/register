@@ -155,6 +155,29 @@ class Model {
      */
     Customer customerLookup(int number) {
         System.out.printf("Searching for customer %d\n", number);
+        String sql = "SELECT * FROM Customer WHERE Phone = ?";
+        try {
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setInt(1, number);
+            rs = ps.executeQuery();
+            // https://stackoverflow.com/a/6813771
+            if (!rs.isBeforeFirst()) {
+                System.out.println("No such customer.");
+                return null;
+            }
+            else {
+                boolean isMember = rs.getInt("Membership") == 1;
+                boolean isSubscribed = rs.getInt("Subscription") == 1;
+                return new Customer(rs.getString("AddressL1"), rs.getString("AddressL2"),
+                        rs.getString("City"), rs.getString("State"), rs.getInt("Zip"),
+                        rs.getString("Email"), rs.getInt("Phone"), isMember, isSubscribed);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        // If Java was a modern language, it would know that I don't need this return statement.
+        // But ok.
         return null;
     }
 

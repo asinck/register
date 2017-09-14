@@ -192,7 +192,7 @@ class CustomerInfo {
 
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_END, 1, 5, 0, 0, 2, 1);
         container.add(emailField, layout);
-        
+
     }
 
 
@@ -239,6 +239,7 @@ class CustomerInfo {
     }
 
     void setCustomer(Customer customer) {
+        //TODO: make this highlight the status of membership and subscription
         if (customer != null) {
             addressL1Field.setText(customer.getAddressL1());
             addressL2Field.setText(customer.getAddressL2());
