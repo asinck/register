@@ -192,29 +192,7 @@ class CustomerInfo {
 
         layout = layoutGenerator(GridBagConstraints.BOTH, GridBagConstraints.LINE_END, 1, 5, 0, 0, 2, 1);
         container.add(emailField, layout);
-
-
-
-        // layout.fill = GridBagConstraints.HORIZONTAL;
-        // layout.anchor = GridBagConstraints.PAGE_START;
-        // layout.gridx = 0;
-        // layout.gridy = 0;
-        // layout.weightx = 1.0;
-        // layout.weighty = 1.0;
-        // layout.gridwidth = 3;
-        // layout.gridheight = 1;
-        // container.add(receipt, layout);
-
-
-        // layout.fill = GridBagConstraints.HORIZONTAL;
-        // layout.anchor = GridBagConstraints.PAGE_END;
-        // layout.gridx = 1;
-        // layout.gridy = 2;
-        // layout.weighty = 0.0;
-        // layout.gridwidth = 3;
-        // layout.gridheight = 1;
-        // container.add(infoBar, layout);
-
+        
     }
 
 
