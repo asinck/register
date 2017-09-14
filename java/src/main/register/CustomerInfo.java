@@ -238,6 +238,11 @@ class CustomerInfo {
 
     }
 
+    /**
+     * Fills the GUI input fields with the provided customer instance.
+     *
+     * @param customer the customer to Fill fields with
+     */
     void setCustomer(Customer customer) {
         //TODO: make this highlight the status of membership and subscription
         if (customer != null) {
@@ -251,6 +256,11 @@ class CustomerInfo {
         }
     }
 
+    /**
+     * Returns the lookup key (ie, phone number) of the customer
+     *
+     * @return the the lookup key for the customer
+     */
     int getLookupKey() {
         try {
             return Integer.parseInt(phoneLookupField.getText());
