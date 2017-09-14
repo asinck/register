@@ -241,7 +241,7 @@ class CustomerInfo {
     /**
      * Fills the GUI input fields with the provided customer instance.
      *
-     * @param customer the customer to Fill fields with
+     * @param customer the customer to fill fields with
      */
     void setCustomer(Customer customer) {
         //TODO: make this highlight the status of membership and subscription
