@@ -226,9 +226,14 @@ class CustomerInfo {
             zip = Integer.parseInt(zipString);
         } catch (NumberFormatException ignored) {}
 
+        //TODO: This is the primary key. Handle this better.
+        //TODO: There's some sort of issue with providing a 10-digit number. 7-digit works.
         try {
             phoneNumber = Integer.parseInt(phoneNumberString);
-        } catch (NumberFormatException ignored) {}
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid phone number.");
+            return null;
+        }
 
         if (!(addressL1.equals("") || addressL2.equals(""))) {
             customer = new Customer(addressL1, addressL2, city, state, zip, email, phoneNumber, membership, subscription);
