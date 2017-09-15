@@ -191,4 +191,10 @@ class Customer {
     void setSubscribe(boolean newSubscribe) {
         subscribe = newSubscribe;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s\n%s\n%s, %s %d\n%s  --  %d\nmember=%s, subscribe=%s",
+                addressL1, addressL2, city, state, zip, email, phoneNumber, member, subscribe);
+    }
 }

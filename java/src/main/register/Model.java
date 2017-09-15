@@ -187,8 +187,38 @@ class Model {
      * @param customer the customer to add
      */
     void addCustomer(Customer customer) {
+        // TODO: add unit test for this function
         if (customer != null) {
-            System.out.printf("Adding customer %s\n", customer.getEmail());
+
+            // Make sure that the customer doesn't already exist in the database
+            if (customerLookup(customer.getPhoneNumber()) != null) {
+                System.out.println("Email phone number already exists in database. ");
+                return;
+            }
+
+            System.out.printf("Adding customer %s\n", customer.getPhoneNumber());
+
+            // Go ahead and prepare and insert the customer
+            String sql = "INSERT INTO Customer VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            try {
+                int isMember = customer.getMember() ? 1 : 0;
+                int isSubscribed = customer.getSubscribe() ? 1 : 0;
+
+                PreparedStatement ps = c.prepareStatement(sql);
+                ps.setInt(1, customer.getPhoneNumber());
+                ps.setString(2, customer.getEmail());
+                ps.setString(3, customer.getAddressL1());
+                ps.setString(4, customer.getAddressL2());
+                ps.setString(5, customer.getCity());
+                ps.setString(6, customer.getState());
+                ps.setInt(7, customer.getZip());
+                ps.setInt(8, isMember);
+                ps.setInt(9, isSubscribed);
+                ps.execute();
+                c.commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
