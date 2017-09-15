@@ -213,7 +213,7 @@ class CustomerInfo {
      */
     Customer getCustomer() {
         String addressL1 = addressL1Field.getText();
-        String addressL2 = addressL1Field.getText();
+        String addressL2 = addressL2Field.getText();
         String city = cityField.getText();
         String state = stateField.getText();
         String email = emailField.getText();
