@@ -192,7 +192,7 @@ class Model {
 
             // Make sure that the customer doesn't already exist in the database
             if (customerLookup(customer.getPhoneNumber()) != null) {
-                System.out.println("Email phone number already exists in database. ");
+                System.out.println("Phone number already exists in database. ");
                 return;
             }
 
@@ -240,8 +240,26 @@ class Model {
      * @param customer the customer to delete
      */
     void deleteCustomer(Customer customer) {
+        System.out.println("function called.");
+        System.out.println(customer);
         if (customer != null) {
-            System.out.printf("Deleting customer %s\n", customer.getEmail());
+            // Make sure that the customer doesn't already exist in the database
+            if (customerLookup(customer.getPhoneNumber()) == null) {
+                System.out.println("Phone number doesn't exist in database. ");
+                return;
+            }
+            System.out.printf("Deleting customer %d\n", customer.getPhoneNumber());
+
+            // Go ahead and prepare and delete the customer
+            String sql = "DELETE FROM Customer WHERE Phone = ?;";
+            try {
+                PreparedStatement ps = c.prepareStatement(sql);
+                ps.setInt(1, customer.getPhoneNumber());
+                ps.execute();
+                c.commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
