@@ -235,12 +235,12 @@ class CustomerInfo {
             return null;
         }
 
-        if (!(addressL1.equals("") || addressL2.equals(""))) {
+        if (phoneNumber != -1) {
             customer = new Customer(addressL1, addressL2, city, state, zip, email, phoneNumber, membership, subscription);
             return customer;
         }
+        //if the phone number is still default, invalid.
         return null;
-
     }
 
     /**
