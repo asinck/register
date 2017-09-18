@@ -197,4 +197,41 @@ class Customer {
         return String.format("%s\n%s\n%s, %s %d\n%s  --  %d\nmember=%s, subscribe=%s",
                 addressL1, addressL2, city, state, zip, email, phoneNumber, member, subscribe);
     }
+
+    /**
+     * The .equals() method for this class.
+     *
+     * http://www.geeksforgeeks.org/overriding-equals-method-in-java/
+     *
+     * @param obj       the other object to test
+     * @return true if equal, false otherwise
+     */
+    @Override
+    public boolean equals(Object obj) {
+        // If the object is compared with itself then return true
+        if (obj == this) {
+            return true;
+        }
+
+        // If the object isn't even the right type, return false
+        if (!(obj instanceof Customer)) {
+            return false;
+        }
+
+        // typecast obj to Customer so that we can compare data members
+        Customer other = (Customer) obj;
+
+        // Compare the data members and return accordingly
+        // Two customers are considered equal if they have the all the same values.
+
+        return addressL1.equals(other.getAddressL1()) &&
+                addressL2.equals(other.getAddressL2()) &&
+                city.equals(other.getCity()) &&
+                state.equals(other.getState()) &&
+                zip == other.getZip() &&
+                email.equals(other.getEmail()) &&
+                phoneNumber == other.getPhoneNumber() &&
+                member == other.getMember() &&
+                subscribe == other.getSubscribe();
+    }
 }
