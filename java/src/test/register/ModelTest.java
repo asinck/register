@@ -5,16 +5,17 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class ModelTest {
-    @Test
-    public void testModelItem() {
-        // This makes sure that when an item is looked up in the database that it returns the
-        // expected values.
-        Model model = new Model();
-        ReceiptItem item = model.itemLookup(4011);
-        assertEquals(item, new ReceiptItem("BANANAS", 0, 82.04));
-        model.destruct();
-        System.out.println("All Model Item tests passed.");
-    }
+
+//    @Test
+//    public void testModelItem() {
+//        // This makes sure that when an item is looked up in the database that it returns the
+//        // expected values.
+//        Model model = new Model();
+//        ReceiptItem item = model.itemLookup(4011);
+//        assertEquals(item, new ReceiptItem("BANANAS", 0, 82.04));
+//        model.destruct();
+//        System.out.println("All Model Item tests passed.");
+//    }
 
     @Test
     public void testModelCustomer() {
