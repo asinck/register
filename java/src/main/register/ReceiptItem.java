@@ -121,16 +121,17 @@ class ReceiptItem {
         if (obj == this) {
             return true;
         }
-
+        
+        // If the object isn't even the right type, return false
         if (!(obj instanceof ReceiptItem)) {
             return false;
         }
 
-        // typecast o to Complex so that we can compare data members
+        // typecast obj to a ReceiptItem so that we can compare data members
         ReceiptItem ri = (ReceiptItem) obj;
 
         // Compare the data members and return accordingly
         return name.equals(ri.getName()) &&
-            Double.compare(price, ri.getPrice()) == 0;
+                Double.compare(price, ri.getPrice()) == 0;
     }
 }
