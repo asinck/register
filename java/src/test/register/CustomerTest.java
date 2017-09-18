@@ -4,6 +4,7 @@ package register;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class CustomerTest {
 
@@ -79,5 +80,9 @@ public class CustomerTest {
         
         customer.setSubscribe(subscribe);
         assertEquals(subscribe, customer.getSubscribe());
+
+        // Test the .equals method
+        assertNotEquals(customer, customer2);
+
     }
 }
