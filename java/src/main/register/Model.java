@@ -149,6 +149,20 @@ class Model {
      * Looks up the customer phone number in the database and returns
      * the account if found and null otherwise.
      *
+     * @param customer
+     * @return the customer record corresponding to the given customer's number, or
+     *         null if not found
+     */
+    Customer customerLookup(Customer customer) {
+        if (customer == null) {
+            return null;
+        }
+        return customerLookup(customer.getPhoneNumber());
+    }
+    /**
+     * Looks up the customer phone number in the database and returns
+     * the account if found and null otherwise.
+     *
      * @param number    The number to look up
      * @return the customer corresponding to the given number, or
      *         null if not found
@@ -191,7 +205,7 @@ class Model {
         if (customer != null) {
 
             // Make sure that the customer doesn't already exist in the database
-            if (customerLookup(customer.getPhoneNumber()) != null) {
+            if (customerLookup(customer) != null) {
                 System.out.println("Phone number already exists in database. ");
                 return;
             }
@@ -244,7 +258,7 @@ class Model {
         System.out.println(customer);
         if (customer != null) {
             // Make sure that the customer doesn't already exist in the database
-            if (customerLookup(customer.getPhoneNumber()) == null) {
+            if (customerLookup(customer) == null) {
                 System.out.println("Phone number doesn't exist in database. ");
                 return;
             }
