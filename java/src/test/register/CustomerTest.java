@@ -20,10 +20,18 @@ public class CustomerTest {
     private Customer customer =
             new Customer(al1, al2, city, state, zip, email,
                     phoneNumber, member, subscribe);
-    
+    private Customer customer2 =
+            new Customer(al1, al2, city, state, zip, email,
+                    phoneNumber, member, subscribe);
+
+
     @Test
     public void testCustomer() {
-        
+
+        // Test the .equals method
+        assertEquals(customer, customer2);
+
+        // Test all fields of the customer for getting information back out of it
         assertEquals(al1, customer.getAddressL1());
         assertEquals(al2, customer.getAddressL2());
         assertEquals(city, customer.getCity());
@@ -43,7 +51,8 @@ public class CustomerTest {
         phoneNumber = 987654321;
         member = false;
         subscribe = true;
-        
+
+        // Test setting all the fields of the customer
         customer.setAddressL1(al1);
         assertEquals(al1, customer.getAddressL1());
         
@@ -70,6 +79,5 @@ public class CustomerTest {
         
         customer.setSubscribe(subscribe);
         assertEquals(subscribe, customer.getSubscribe());
-
     }
 }
