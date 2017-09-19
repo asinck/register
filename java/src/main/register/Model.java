@@ -206,7 +206,7 @@ class Model {
 
             // Make sure that the customer doesn't already exist in the database
             if (customerLookup(customer) != null) {
-                System.out.println("Phone number already exists in database. ");
+                System.out.println("Customer already exists in database.");
                 return;
             }
 
@@ -243,8 +243,45 @@ class Model {
      * @param customer the customer to update
      */
     void updateCustomer(Customer customer) {
+        System.out.printf("Updating customer %s\n", customer.getPhoneNumber());
         if (customer != null) {
-            System.out.printf("Updating customer %s\n", customer.getEmail());
+            // Make sure that the customer is actually in the database
+            if (customerLookup(customer) == null) {
+                System.out.println("Customer doesn't exist in database. ");
+                return;
+            }
+            // Go ahead and prepare and update the customer
+            //update customer set email = "email@example.com" where Phone = -10;
+
+            String sql = "UPDATE Customer " +
+                    "SET Email = ?, " +
+                    "AddressL1 = ?, " +
+                    "AddressL2 = ?, " +
+                    "City = ?, " +
+                    "State = ?, " +
+                    "Zip = ?, " +
+                    "Membership = ?, " +
+                    "Subscription = ? " + 
+                    "WHERE Phone = ?;";
+            try {
+                int isMember = customer.getMember() ? 1 : 0;
+                int isSubscribed = customer.getSubscribe() ? 1 : 0;
+
+                PreparedStatement ps = c.prepareStatement(sql);
+                ps.setString(1, customer.getEmail());
+                ps.setString(2, customer.getAddressL1());
+                ps.setString(3, customer.getAddressL2());
+                ps.setString(4, customer.getCity());
+                ps.setString(5, customer.getState());
+                ps.setInt(6, customer.getZip());
+                ps.setInt(7, isMember);
+                ps.setInt(8, isSubscribed);
+                ps.setInt(9, customer.getPhoneNumber());
+                ps.execute();
+                c.commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -254,12 +291,11 @@ class Model {
      * @param customer the customer to delete
      */
     void deleteCustomer(Customer customer) {
-        System.out.println("function called.");
         System.out.println(customer);
         if (customer != null) {
             // Make sure that the customer doesn't already exist in the database
             if (customerLookup(customer) == null) {
-                System.out.println("Phone number doesn't exist in database. ");
+                System.out.println("Customer doesn't exist in database.");
                 return;
             }
             System.out.printf("Deleting customer %d\n", customer.getPhoneNumber());
