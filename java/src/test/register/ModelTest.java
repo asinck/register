@@ -68,8 +68,21 @@ public class ModelTest {
      * Tests to make sure that the add functionality works.
      */
     @Test
+    public void testModelDestruct() {
+        Model model = new Model();
+        model.destruct();
+    }
+
+    /**
+     * Tests to make sure that the add functionality works.
+     */
+    @Test
     public void testAdd() {
         Model model = new Model();
+
+        // Test a null addition. If this doesn't crash, nothing should have happened.
+        model.addCustomer(null);
+
 
         // If either of these returns a customer, then there's an issue somewhere. These customers
         // should not exist.
@@ -108,6 +121,10 @@ public class ModelTest {
     public void testUpdate() {
         Model model = new Model();
 
+        // Test a null update. If this doesn't crash, nothing should have happened.
+        model.updateCustomer(null);
+
+
         model.addCustomer(c1);
 //        assertEquals(model.customerLookup(c3), c1);
 //        assertNotEquals(model.customerLookup(c3), c3);
@@ -132,7 +149,10 @@ public class ModelTest {
     public void testDelete() {
         Model model = new Model();
 
-        // Test null delete
+        // Test a null update. If this doesn't crash, nothing should have happened.
+        model.deleteCustomer(null);
+
+        // Test deletion of nonexistent customer
         assertEquals(model.customerLookup(c1), null);
         model.deleteCustomer(c1);
         assertEquals(model.customerLookup(c1), null);
