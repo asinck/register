@@ -6,7 +6,7 @@ before_install:
 notifications:
     email: false
     webhooks:
-      - http://helit.tech:8093/+the-map/showSuccessfulBuildMessages=always
+      - http://helit.org:8093/+the-map/showSuccessfulBuildMessages=always
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
