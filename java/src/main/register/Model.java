@@ -243,8 +243,8 @@ class Model {
      * @param customer the customer to update
      */
     void updateCustomer(Customer customer) {
-        System.out.printf("Updating customer %s\n", customer.getPhoneNumber());
         if (customer != null) {
+            System.out.printf("Updating customer %s\n", customer.getPhoneNumber());
             // Make sure that the customer is actually in the database
             if (customerLookup(customer) == null) {
                 System.out.println("Customer doesn't exist in database. ");
